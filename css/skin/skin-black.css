@@ -1,0 +1,121 @@
+/* CSS Document */
+
+/* 滚动条设置 */
+BODY,.page-body{
+    scrollbar-face-color: #3E4B5C;
+	scrollbar-arrow-color:#3E4B5C;
+	scrollbar-track-color:#f8f8f8;
+}
+
+/* 头部设置 */
+.header{background:#3E4B5C}
+.header .logo{background:url('../../image/SIOV-white-50.png') no-repeat 20px 50% #3E4B5C;color:#f9f9f9}
+.header .header-right{border-bottom:0}
+
+/* 右侧列表 */
+.user-info>ul>li{background:#3E4B5C;}
+.user-info>ul>li>a{color:#f0f0f0;}
+.user-info>ul>li:hover{background:#535C6F}
+.user-info>ul>li:hover>a{color:#ffffff}
+.collspan-menu{color:#f0f0f0;}
+.collspan-menu:hover{background:#3E4B5C;color:#fff}
+.user-info .dropdown-menu  li a{color:#3E4B5C}
+
+/* 左侧导航 */
+.left-nav{}
+.left-nav ul{background:#3E4B5C;border-right: 1px #ffffff solid;border-top: 1px #ffffff solid}
+.left-nav ul li i{color:#ffffff}
+
+.slider-item{color: #ffffff;border-bottom:1px #ffffff solid;}
+
+.popup-menu{border: 1px #3E4B5C solid;background: #3E4B5C;color: #ffffff;}
+.more-menu li{border:0;}
+
+.more-menu li:hover{background:#F0F0F0;color:#3E4B5C}
+.more-menu li:hover i{color: #3E4B5C;}
+
+/*tab样式*/
+.tab-all{border-bottom: 1px #3E4B5C solid;}
+.tab-all .tab{background: #ffffff;color: #3E4B5C;border:1px #3E4B5C solid;border-bottom: 0;}
+.tab-all .active{background:#3E4B5C ;color: #ffffff;}
+.tab-all .tab i:hover{background: #3E4B5C;color: #ffffff;}
+.tab-all .active i:hover{background: #ffffff;color: #3E4B5C;}
+.tab-all .tab-last-space{border-bottom:1px #3E4B5C solid ;}
+.tab-all .tab-space{border-bottom:1px #3E4B5C solid ;}
+
+/*控制tab滚动的按钮*/
+.button{background: #cccccc;border-bottom: 1px #3E4B5C solid;}
+.button i{color:#3E4B5C ;}
+.button i.disabled{color: #999999;cursor: auto;}
+
+.page-title{color:#3E4B5C;}
+.page-title i{color:#3E4B5C;}
+.page-title h3 span{border-bottom-color:#3E4B5C}
+
+.item-bar{color:#3E4B5C;}
+
+/* Miniui重写 */
+
+/* 弹出框 */
+.mini-window .mini-panel-header{background: #3E4B5C}
+.mini-window .mini-panel-title{color: #f0f0f0;}
+.mini-tools-close{background-Image: url(black/close.gif);background-position-y:50% } 
+
+/* 工具栏 */
+.mini-toolbar{background:#F8F8F8 }
+
+/* datagrid 分页图标 */
+.mini-pager-next{background: url(black/next.gif)}
+.mini-pager-last{background: url(black/last.gif)}
+.mini-pager-prev{background: url(black/prev.gif)}
+.mini-pager-first{background: url(black/first.gif)}
+
+/* datagrid 行颜色 */
+.mini-grid-row-hover{background: #ececec !important;}
+.mini-grid-row-selected{background: #c7c7c7 !important;}
+.mini-grid-cell-selected{background:#a3a3a3 !important;}
+
+/* 按钮颜色 */
+.body .mini-button-plain,body .mini-button-plain:hover{background:#8694a6 !important}
+body a.mini-button{background: #3E4B5C;}
+body a.mini-button:hover{background: #3E4B5C !important}
+body a.mini-button-normal:hover{background:#15b5c8  !important}
+body a.mini-button-info:hover{background:#0993ca  !important}
+body a.mini-button-warn:hover{background:#e08607  !important}
+body a.mini-button-success:hover{background:#58b058  !important}
+body a.mini-button-danger:hover{background:#bd362f  !important}
+body a.mini-button-inverse:hover{background:#2c3642  !important}
+
+/* 下拉框，日期输入框等颜色 */
+.mini-buttonedit-button,.mini-htmlfile .mini-buttonedit-button{background:#3E4B5C;border:0;color: #FFF}
+.mini-buttonedit:hover .mini-buttonedit-button,.mini-buttonedit-focus .mini-buttonedit-button,.mini-buttonedit-button:hover{background:#3E4B5C;border:0}
+.mini-datepicker .mini-buttonedit-icon{background-Image: url(blue/date.png);}
+.mini-combobox .mini-buttonedit-icon,.mini-treeselect .mini-buttonedit-icon{background-Image: url(black/down.png);}
+.mini-buttonedit:hover .mini-buttonedit-button,.mini-buttonedit-focus .mini-buttonedit-button,.mini-buttonedit-button:hover{background:#3E4B5C;border:0}
+.mini-buttonedit-disabled .mini-buttonedit-button,.mini-buttonedit-disabled:hover .mini-buttonedit-button{background:#3E4B5C !important;} 
+
+/* 日历选择框 */
+.mini-calendar-header{background: #3E4B5C}
+.mini-calendar-footer{background: #f6f6f6}
+.mini-calendar-title{color: #FFF}
+.mini-calendar-yearPrev{background-Image: url(blue/date-prev.gif);}
+.mini-calendar-monthPrev,.mini-calendar-monthNext{background-Image: url(blue/date-months.gif);}
+.mini-calendar-yearNext{background-Image: url(blue/date-next.gif);}
+.mini-calendar-selected{background:#3E4B5C !important;color: #FFF !important; }
+.mini-calendar-today{border-color: #3E4B5C !important}
+.mini-buttonedit-up span{background-Image: url(black/time-up.png);background-position: 50%}
+.mini-buttonedit-down span{background-Image: url(black/time-down.png);background-position: 50%}
+
+/* 下拉列表颜色 */
+.mini-listbox-item:hover td,.mini-listbox-item-hover td,.mini-listbox-item-selected td{background: #cfcfcf}
+
+/* 关怀服务 */
+#main_sms .leftTop{background-color:#f6f6f6;}
+#main_sms .leftBottom{background-color:#f6f6f6;}
+#main_sms .left ul li a{color:#3E4B5C }
+#main_sms .left ul li:hover{background: #3E4B5C;}
+#main_sms .left ul li:hover a{color: #FFF}
+#main_sms .center{background-color:#f6f6f6;}
+.mini-tab{background: #f6f6f6}
+.mini-tab-active{background: #535C6F;color: #FFF}
+

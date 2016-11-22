@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['boot-table','boot-table-fixed'])
+			bs.loadStyle('../', ['boot-table','boot-table-fixed']);
+			$(function(){
+				var $demoTable1 = $('#demoTable1').bootstrapTable({
+					'columns':[
+						[{}]
+					],
+					'onSort':function(name, order){
+						alert(name+'@'+order);
+					}
+				})
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div class="widget">
+			<div class="widget-title">bootstrap-table 表格控件</div>
+			<div class="widget-banner">界面效果</div>
+			<div class="blue">锁表头</div>
+			<table data-toggle="table" data-click-to-select="true" data-height="250"
+				data-url="http://127.0.0.1:3000/base/getTableDataWithoutPage" data-side-pagination="server"
+				data-pagination="false" data-data-name="dataArr" data-total-name="totalNum"
+				data-click-to-select="true" data-single-select="true">
+				<thead>
+					<tr>
+						<th data-field="state" data-checkbox="true"></th>
+						<th data-field="id">Item ID</th>
+						<th data-field="employeeName">客户名称</th>
+						<th data-field="level">等级</th>
+						<th data-field="age">年龄</th>
+						<th data-field="gender">性别</th>
+					</tr>
+				</thead>
+			</table>
+			<div class="blue">锁列</div>
+			<table id="demoTable1" data-click-to-select="true" data-height="0"
+				data-url="http://127.0.0.1:3000/base/getTableData" data-side-pagination="server" 
+				data-fixed-columns="true" data-fixed-number="1" data-side-pagination="server"
+				data-pagination="true" data-p-index-name="page" data-p-size-name="size" data-page-list = "[10,20,30,50,100]"
+				>
+				<thead>
+					<tr>
+						<th data-field="id">Item ID</th>
+						<th data-field="employeeName" data-sortable="true">客户名称</th>
+						<th data-field="level">等级</th>
+						<th data-field="age">年龄</th>
+						<th data-field="gender">性别</th>
+					</tr>
+				</thead>
+			</table>
+			
+			<div class="widget-banner">其他界面查看:</div>
+			<div class="input-group">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-success" onclick="goToEvent()">table事件方法</button>
+				</div>
+			</div>
+			
+			<div class="widget-banner">引入模块</div>
+			<div class="blue">bs.loadScript('../', ['boot-table','boot-table-fixed'])</div>
+			<div class="blue">bs.loadStyle('../', ['boot-table','boot-table-fixed']);</div>
+			<div class="blue">界面初始化后自动加载 data-toggle="table" 的div标签</div>
+			
+			<div class="widget-banner">使用注意事项</div>
+			<div class="blue">1. 如果不需要使用锁列功能，可以不引入boot-table-fixed</div>
+			<div class="blue">2. 锁列与锁表头存在互斥，不能同时使用</div>
+			<div class="blue">3. 设置data-height="0"取消锁表头，否则超出高度后自动锁表头</div>
+			<div class="blue">4. 锁列不要锁checkbox列，会导致选中不显示问题</div>
+			
+			<div class="widget-banner">Usage 1:</div>
+			<pre><label class="blue">纯Html:</label>
+&lt;table data-toggle="table" data-click-to-select="true" data-height="250"
+	data-url="http://127.0.0.1:3000/base/getTableDataWithoutPage" data-side-pagination="server"
+	data-pagination="false" data-data-name="dataArr" data-total-name="totalNum">
+	&lt;thead>
+		&lt;tr>
+			&lt;th data-field="state" data-checkbox="true"></th>
+			&lt;th data-field="id">Item ID</th>
+			&lt;th data-field="employeeName">客户名称</th>
+			&lt;th data-field="level">等级</th>
+			&lt;th data-field="age">年龄</th>
+			&lt;th data-field="gender">性别</th>
+		&lt;/tr>
+	&lt;/thead>
+&lt;/table>
+<label class="blue">data-field代表数组中对应的字段名称</label></pre>
+  			<div class="widget-banner">Usage 2:</div>
+  			<pre><label class="blue">Html:</label>
+&lt;table id="resultGrid3">
+	&lt;thead>
+		&lt;tr>
+			&lt;th data-field="state" data-checkbox="true"></th>
+			&lt;th data-field="id">Item ID</th>
+			&lt;th data-field="employeeName">客户名称</th>
+			&lt;th data-field="level">等级</th>
+			&lt;th data-field="age">年龄</th>
+			&lt;th data-field="gender">性别</th>
+		&lt;/tr>
+	&lt;/thead>
+&lt;/table>
+<label style="color: #3E8F3E;">JavaScript:</label>
+var $table = $('#resultGrid3').bootstrapTable({
+    url:'http://127.0.0.1:3000/base/getTableData',
+    cache:false,
+    queryParams:function(){
+    		return {
+    			'a':1,
+    			'b':2
+    		}
+    },//自定义参数
+    responseHandler:function(sourceData){
+    		return {
+            "row": sourceData.row,//如果自定义则需要返回自定义的名称
+            "total": sourceData.total
+        }
+    },//自定义处理函数，如果需要特殊处理的返回
+    pageSize:2,//每页数量，默认名称pageSize，可通过pSizeName自定义名称
+    pageNumber:1,//默认为1，当前页码
+    pagination:true,
+    dataName:'row',//自定义数据名称
+    totalName:'total',//自定义数据总行数
+    pIndexName:'page',//自定义分页数名称，如 ?page=0
+    pSizeName:'size',//自定义每页数量名称 如 ?size=10
+    sidePagination:'server'
+});</pre>
+  			<div class="widget-banner">Property:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Html Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>data</td>
+					<td>无（需在JS中定义）</td>
+					<td>Array</td>
+					<td>本地数据源,与url冲突</td>
+					<td>[]</td>
+				</tr>
+				<tr>
+					<td>url</td>
+					<td>data-url</td>
+					<td>String</td>
+					<td>服务数据源，与data冲突</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>height</td>
+					<td>data-height</td>
+					<td>String</td>
+					<td>表格的高度，未设置或者设置为0，则自适应，设置后超高将锁表头</td>
+					<td>undefined</td>
+				</tr>
+				<tr>
+					<td>sortable</td>
+					<td>data-sortable</td>
+					<td>Boolean</td>
+					<td>是否允许排序,需与列的sortable同时使用</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>sortName</td>
+					<td>data-sort-name</td>
+					<td>String</td>
+					<td>数据排序名称</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>sortOrder</td>
+					<td>data-sort-order</td>
+					<td>String:('asc'\'desc')</td>
+					<td>数据排序方法</td>
+					<td></td>
+				</tr>
+				<tr class="disabled">
+					<td>locale</td>
+					<td>data-locale</td>
+					<td>String</td>
+					<td>国际化标签,已弃用</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>columns</td>
+					<td>无（需在JS中定义）</td>
+					<td>Array[Array[]]</td>
+					<td>表格列的定义,参见column属性表</td>
+					<td>[[]]</td>
+				</tr>
+				<tr class="disabled">
+					<td>ajax</td>
+					<td>无（需在JS中定义）</td>
+					<td>Function</td>
+					<td>已弃用</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>contentType</td>
+					<td>data-content-type</td>
+					<td>String</td>
+					<td>ajax call param</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>dataType</td>
+					<td>data-data-type</td>
+					<td>String</td>
+					<td>ajax call param</td>
+					<td>json</td>
+				</tr>
+				<tr>
+					<td>queryParams</td>
+					<td>无（需在JS中定义）</td>
+					<td>定义查询的参数</td>
+					<td>Function</td>
+					<td>function (params) {
+			            return params;
+			        }</td>
+				</tr>
+				<tr>
+					<td>responseHandler</td>
+					<td>无（需在JS中定义）</td>
+					<td>拦截ajax返回数据，返回适合表格的数据</td>
+					<td>Function</td>
+					<td>function (res) {
+			            return res;
+			        }</td>
+				</tr>
+				<tr>
+					<td>pagination</td>
+					<td>data-pagination</td>
+					<td>Boolean</td>
+					<td>是否做分页处理</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>sidePagination</td>
+					<td>data-side-pagination</td>
+					<td>String:'client'\'server'</td>
+					<td>分页由谁处理（客户端、服务端）,一般data配合client、url配合server，需pagination=true(Usage 2)</td>
+					<td>client</td>
+				</tr>
+				<tr>
+					<td>dataName</td>
+					<td>data-data-name</td>
+					<td>String</td>
+					<td>指定服务端返回数据集合的名称(Usage 1)</td>
+					<td>rows</td>
+				</tr>
+				<tr>
+					<td>totalName</td>
+					<td>data-total-name</td>
+					<td>String</td>
+					<td>指定服务端返回数据总数的名称(Usage 1)</td>
+					<td>total</td>
+				</tr>
+				<tr>
+					<td>pIndexName</td>
+					<td>data-p-index-name</td>
+					<td>String</td>
+					<td>指定当前分页号的名称(Usage 2)</td>
+					<td>pageIndex</td>
+				</tr>
+				<tr>
+					<td>pSizeName</td>
+					<td>data-p-size-name</td>
+					<td>String</td>
+					<td>指定当前分页数量的名称(Usage 2)</td>
+					<td>pageIndex</td>
+				</tr>
+				<tr>
+					<td>pageNumber</td>
+					<td>data-page-number</td>
+					<td>String</td>
+					<td>当前页码(Usage 2)</td>
+					<td>1（实际传入后台为0）</td>
+				</tr>
+				<tr>
+					<td>pageSize</td>
+					<td>data-page-size</td>
+					<td>String</td>
+					<td>每页的数量(Usage 2)</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>pageList</td>
+					<td>data-page-list</td>
+					<td>Array</td>
+					<td>每页数量的下拉选择(Usage 2)</td>
+					<td>[10, 25, 50, 100]</td>
+				</tr>
+				<tr>
+					<td>clickToSelect</td>
+					<td>data-click-to-select</td>
+					<td>Boolean</td>
+					<td>点击是否选择该行</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>singleSelect</td>
+					<td>data-single-select</td>
+					<td>Boolean</td>
+					<td>是否设置为单选，作用同radio</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>checkboxHeader</td>
+					<td>data-checkbox-header</td>
+					<td>Boolean</td>
+					<td>是否显示checkbox表头</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>rowStyle</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>循环控制行的样式，返回classname</td>
+					<td>function (row, index) {return {}}</td>
+				</tr>
+				<tr>
+					<td>rowAttributes</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>循环控制行的属性</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr class="disabled">
+					<td>onAll</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>check全选事件(不推荐,推荐使用onCheckAll)</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onClickCell</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>单元格点击事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onDblClickCell</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>单元格双击事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onClickRow</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>行点击事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onDblClickRow</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>行双击事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onSort</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>点击排序触发的事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onCheck</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>行选中时触发的事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onUncheck</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>行取消选中时触发的事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onCheckAll</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>全选事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onUncheckAll</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>取消全选事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr class="disabled">
+					<td>onCheckSome\onUncheckSome</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>不触发事件，可以不使用</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onLoadSuccess</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>数据加载完成后触发(调用ajax才会触发)</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onLoadError</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>数据加载失败后触发(调用ajax才会触发)</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+				<tr>
+					<td>onPageChange</td>
+					<td>无（需在JS中定义）</td>
+					<td>Fucntion</td>
+					<td>更改分页触发的事件</td>
+					<td>参考"table事件"界面</td>
+				</tr>
+			</table>
+			
+			<div class="widget-banner">Column Property:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Html Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>radio</td>
+					<td>data-radio</td>
+					<td>Boolean</td>
+					<td>单选框设置，与checkbox互斥</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>checkbox</td>
+					<td>data-checkbox</td>
+					<td>Boolean</td>
+					<td>多选框设置，与radio互斥</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>checkboxEnabled</td>
+					<td>data-checkbox-enabled</td>
+					<td>Boolean</td>
+					<td>多选框是否可用（true:可用,false:禁用）</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>field</td>
+					<td>data-field</td>
+					<td>String</td>
+					<td>绑定数据源名称</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>title</td>
+					<td>data-title</td>
+					<td>String</td>
+					<td>列标题（若是html定义可不设置）</td>
+					<td></td>
+				</tr>
+				<tr class="disabled">
+					<td>titleTooltip</td>
+					<td>data-title-tool-tip</td>
+					<td>String</td>
+					<td>未发现效果（源码是设置了title属性）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>class</td>
+					<td>data-class</td>
+					<td>String</td>
+					<td>为该列添加class样式</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>align</td>
+					<td>data-align</td>
+					<td>String('left'\'right'\'center')</td>
+					<td>数据文本的位置</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>halign</td>
+					<td>data-halign</td>
+					<td>String('left'\'right'\'center')</td>
+					<td>标题文本的位置</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>falign</td>
+					<td>data-falign</td>
+					<td>String('left'\'right'\'center')</td>
+					<td>footer文本的位置</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>sortable</td>
+					<td>data-sortable</td>
+					<td>Boolean</td>
+					<td>该列是否允许排序（同时设置表格的sortable及列的sortable才能排序）</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>order</td>
+					<td>data-order</td>
+					<td>String('asc'\'desc')</td>
+					<td>该列的排序方法</td>
+					<td>asc</td>
+				</tr>
+				<tr>
+					<td>visible</td>
+					<td>data-visible</td>
+					<td>Boolean</td>
+					<td>是否显示该列</td>
+					<td>true</td>
+				</tr>
+				<tr class="disabled">
+					<td>switchable</td>
+					<td>data-switchable</td>
+					<td>Boolean</td>
+					<td>作用不明</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>clickToSelect</td>
+					<td>data-click-to-select</td>
+					<td>Boolean</td>
+					<td>点击该列是否允许选择行(仍然会触发cell-click\row-click)</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>formatter</td>
+					<td>data-formatter</td>
+					<td>Function</td>
+					<td>显示该列时处理数据的函数</td>
+					<td><pre>function(value, row){
+ return value;
+}</pre></td>
+				</tr>
+				<tr class="disabled">
+					<td>footerFormatter</td>
+					<td>data-footer-formatter</td>
+					<td>Function</td>
+					<td>作用不明确</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>sortName</td>
+					<td>data-sort-name</td>
+					<td>String</td>
+					<td>排序时传入后台的名称</td>
+					<td>与field一致</td>
+				</tr>
+			</table>	
+			
+			<div class="widget-banner">Method:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Parameter</th>
+						<th>Description</th>
+						<th>Return</th>
+						<th>Usage</th>
+						<th>Test</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>initSelect</td>
+					<td>Options(参见属性列表)</td>
+					<td>初始化控件，若控件已初始化过，此方法失效</td>
+					<td>无</td>
+					<td>$('#select1').initSelect()</td>
+					<td onclick="initSelectTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>getSelectValue</td>
+					<td>无</td>
+					<td>获取控件已选择的值，若未选择返回空</td>
+					<td>selectedValue(String)</td>
+					<td>$('#select1').getSelectValue()</td>
+					<td onclick="getSelectValueTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>getSelectText</td>
+					<td>无</td>
+					<td>获取控件已选择的文本，若未选择返回空</td>
+					<td>selectedText(String)</td>
+					<td>$('#select1').getSelectText()</td>
+					<td onclick="getSelectTextTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>select</td>
+					<td>selectValue(String)</td>
+					<td>指定控件选择某个值</td>
+					<td>无</td>
+					<td>$('#select1').select('zh')</td>
+					<td onclick="selectZHTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>getSelectAllData</td>
+					<td>无</td>
+					<td>获取当前下拉框所有数据</td>
+					<td>Array</td>
+					<td>$('#select1').getSelectAllData()</td>
+					<td onclick="getSelectAllDataTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>reloadSelect</td>
+					<td>Options(参见属性列表)</td>
+					<td>重新初始化select控件</td>
+					<td>空</td>
+					<td>$('#select1').reloadSelect({})</td>
+					<td onclick="reloadSelectTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>destorySelect</td>
+					<td>无</td>
+					<td>销毁控件</td>
+					<td>无</td>
+					<td>$('#select1').destorySelect()</td>
+					<td onclick="destorySelectTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+			</table>	
+			
+		</div>
+		
+		<script>
+			function goToEvent(){
+				window.parent.openTab('','table事件方法','demo/datagrid.html')
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

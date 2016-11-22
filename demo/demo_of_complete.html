@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['complete'])
+			bs.loadStyle('../', []);
+		</script>
+		
+	</head>
+	<body>
+		<div class="widget">
+			<div class="widget-title">siov-autocomplete   自动索引下拉选择框控件</div>
+			<div class="widget-banner">界面效果</div>
+			<table class="query-table">
+				<tr>
+					<td class="query-label">单选:（请输入“国”测试）</td>
+					<td>
+						<div class="siov-autocomplete" data-toggle="complete" data-url="http://127.0.0.1:3000/base/getCountryByKey"></div>
+					</td>
+					<td class="query-label">多选:（请输入“国”测试）</td>
+					<td>
+						<div class="siov-autocomplete" data-toggle="complete" data-url="http://127.0.0.1:3000/base/getCountryByKey" data-multi-select="true"></div>
+					</td>
+				</tr>
+			<table>
+			
+			<div class="widget-banner">引入模块</div>
+			<div class="blue">bs.loadScript('../', ['complete'])</div>
+			<div class="blue">界面初始化后自动加载 data-toggle="complete" 的div标签</div>
+			<div class="blue">查询时会自动在查询的url后面添加key=xxxx</div>
+			
+			<div class="widget-banner">Usage 1:</div>
+			<pre><label class="blue">纯Html:</label>
+&lt;div class="siov-autocomplete" data-toggle="complete" data-url="http://127.0.0.1:3000/base/getCountryByKey"&gt;&lt;/div&gt;</pre>
+  			<div class="widget-banner">Usage 2:</div>
+  			<pre><label class="blue">Html:</label>
+&lt;div id="complete1" class="siov-autocomplete"&gt;&lt;/div&gt;
+<label style="color: #3E8F3E;">JavaScript:</label>
+$('#complete1').complete({
+	support: function(key, callback) {
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: "http://127.0.0.1:3000/base/getCountryByKey?key=" + key,
+			success: function(data) {
+				callback(data); //需回传一个对象数组，创建下拉列表
+			}
+		})
+	},
+	idField: 'id',
+	textField: 'text',
+	onChange: function(id, text) {
+		alert('您选择了：'+id + '@@' + text);
+	}
+});
+或者  			
+$('#complete1').complete({
+	url:'http://127.0.0.1:3000/base/getCountryByKey'
+})</pre>
+  			<div class="widget-banner">Property:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Html Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>url</td>
+					<td>data-url</td>
+					<td>String</td>
+					<td>服务数据源</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>support</td>
+					<td>无（需在JS中定义）</td>
+					<td>Function</td>
+					<td>自定义处理函数，需回传一个格式化的数组给callback</td>
+					<td>function(key, callback) {callback([])}</td>
+				</tr>
+				<tr>
+					<td>idField</td>
+					<td>data-id-field</td>
+					<td>String</td>
+					<td>下拉框唯一字段，若使用support，则support数组的id字段保持一致</td>
+					<td>id</td>
+				</tr>
+				<tr>
+					<td>textField</td>
+					<td>data-text-field</td>
+					<td>String</td>
+					<td>下拉框文本字段，若使用support，则support数组的text字段保持一致</td>
+					<td>text</td>
+				</tr>
+				<tr>
+					<td>multiSelect</td>
+					<td>data-multi-select</td>
+					<td>Boolean</td>
+					<td>是否设置为多选</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>onChange</td>
+					<td>无（需在JS中定义）</td>
+					<td>Function</td>
+					<td>值改变时的回调,返回选中的id，text</td>
+					<td>onChange: function(id, text) {}</td>
+				</tr>
+			</table>
+			
+			<div class="widget-banner">Method:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Parameter</th>
+						<th>Description</th>
+						<th>Return</th>
+						<th>Usage</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>getCompValue</td>
+					<td>无</td>
+					<td>获取控件已选择的值，若未选择返回空</td>
+					<td>String</td>
+					<td>$('#complete1').getCompValue()</td>
+				</tr>
+				<tr>
+					<td>getCompText</td>
+					<td>无</td>
+					<td>获取控件已选择的值，若未选择返回空</td>
+					<td>String</td>
+					<td>$('#complete1').getCompText()</td>
+				</tr>
+			</table>	
+			
+		</div>
+		
+		
+	</body>
+</html>

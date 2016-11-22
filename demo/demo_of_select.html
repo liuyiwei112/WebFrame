@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['select'])
+			bs.loadStyle('../', []);
+//			$('#select1').combobox({
+//				data: select1Data,
+//				showNullItem: true,
+//				emptyText: '全选',
+//				onChange: function(id, text) {
+//				}
+//			});
+		</script>
+		
+	</head>
+	<body>
+		<div class="widget">
+			<div class="widget-title">siov-select   下拉选择框控件</div>
+			<div class="widget-banner">界面效果</div>
+			<table class="query-table">
+				<tr>
+					<td class="query-label">单选：</td>
+					<td>
+						<div data-toggle="select" class="siov-select" data-show-null-item="true" data-empty-text="全选" 
+							data-url="http://127.0.0.1:3000/base/getCountry" style="width:150px"></div>
+					</td>
+					<td class="query-label">多选：</td>
+					<td>
+						<div data-toggle="select" class="siov-select" data-show-null-item="false"
+							data-url="http://127.0.0.1:3000/base/getCountry" style="width:150px" data-multi-select="true"></div>
+					</td>
+				</tr>
+			<table>
+			
+			<div class="widget-banner">引入模块</div>
+			<div class="blue">bs.loadScript('../', ['select'])</div>
+			<div class="blue">界面初始化后自动加载 data-toggle="select" 的div标签</div>
+			
+			<div class="widget-banner">Usage 1:</div>
+			<pre><label class="blue">纯Html:</label>
+&lt;div data-toggle="select" class="siov-select" data-show-null-item="true" data-empty-text="全选" 
+  data-url="http://127.0.0.1:3000/base/getCountry" style="width:150px"&gt;&lt;/div&gt;</pre>
+  			<div class="widget-banner">Usage 2:</div>
+  			<pre><label class="blue">Html:</label>
+&lt;div id="select1" class="siov-select" style="width:150px"&gt;&lt;/div&gt;
+<label style="color: #3E8F3E;">JavaScript:</label>
+$('#select1').initSelect({
+	url: 'http://127.0.0.1:3000/base/getCountry',
+	showNullItem: true,
+	emptyText: '全选',
+	onChange: function(id, text) {
+	}
+});</pre>
+  			<div class="widget-banner">Property:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Html Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>data</td>
+					<td>无（需在JS中定义）</td>
+					<td>Array</td>
+					<td>本地数据源,与url冲突</td>
+					<td>[]</td>
+				</tr>
+				<tr>
+					<td>url</td>
+					<td>data-url</td>
+					<td>String</td>
+					<td>服务数据源，与data冲突</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>idField</td>
+					<td>data-id-field</td>
+					<td>String</td>
+					<td>下拉框唯一字段</td>
+					<td>id</td>
+				</tr>
+				<tr>
+					<td>textField</td>
+					<td>data-text-field</td>
+					<td>String</td>
+					<td>下拉框文本字段</td>
+					<td>text</td>
+				</tr>
+				<tr>
+					<td>showNullItem</td>
+					<td>data-show-null-item</td>
+					<td>Boolean</td>
+					<td>是否显示空选项</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>emptyText</td>
+					<td>data-empty-text</td>
+					<td>String</td>
+					<td>空选项显示的文本，showNullItem设置为true此属性生效</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>multiSelect</td>
+					<td>data-multi-select</td>
+					<td>Boolean</td>
+					<td>是否设置为多选</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>onChange</td>
+					<td>无（需在JS中定义）</td>
+					<td>Function</td>
+					<td>值改变时的回调,返回选中的id，text</td>
+					<td>onChange: function(id, text) {}</td>
+				</tr>
+			</table>
+			
+			<div class="widget-banner">Test Method(请先初始化控件)</div>
+			<div id="select1" class="siov-select" data-show-null-item="true" data-empty-text="全选" 
+					data-url="http://127.0.0.1:3000/base/getCountry" data-default-value="en" style="width:150px"></div>
+			<div class="blue" id="commandText"></div>
+			<div class="widget-banner">Method:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Parameter</th>
+						<th>Description</th>
+						<th>Return</th>
+						<th>Usage</th>
+						<th>Test</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>initSelect</td>
+					<td>Options(参见属性列表)</td>
+					<td>初始化控件，若控件已初始化过，此方法失效</td>
+					<td>无</td>
+					<td>$('#select1').initSelect()</td>
+					<td onclick="initSelectTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>getSelectValue</td>
+					<td>无</td>
+					<td>获取控件已选择的值，若未选择返回空</td>
+					<td>selectedValue(String)</td>
+					<td>$('#select1').getSelectValue()</td>
+					<td onclick="getSelectValueTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>getSelectText</td>
+					<td>无</td>
+					<td>获取控件已选择的文本，若未选择返回空</td>
+					<td>selectedText(String)</td>
+					<td>$('#select1').getSelectText()</td>
+					<td onclick="getSelectTextTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>select</td>
+					<td>selectValue(String)</td>
+					<td>指定控件选择某个值</td>
+					<td>无</td>
+					<td>$('#select1').select('zh')</td>
+					<td onclick="selectZHTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>getSelectAllData</td>
+					<td>无</td>
+					<td>获取当前下拉框所有数据</td>
+					<td>Array</td>
+					<td>$('#select1').getSelectAllData()</td>
+					<td onclick="getSelectAllDataTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>reloadSelect</td>
+					<td>Options(参见属性列表)</td>
+					<td>重新初始化select控件</td>
+					<td>空</td>
+					<td>$('#select1').reloadSelect({})</td>
+					<td onclick="reloadSelectTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+				<tr>
+					<td>destorySelect</td>
+					<td>无</td>
+					<td>销毁控件</td>
+					<td>无</td>
+					<td>$('#select1').destorySelect()</td>
+					<td onclick="destorySelectTest()">
+						<button type="button" class="btn btn-success">Test</button>
+					</td>
+				</tr>
+			</table>	
+			
+		</div>
+		
+		<script>
+			function initSelectTest(){
+				$('#select1').initSelect();
+				$('#commandText').html('控件已初始化!');
+			}
+			function getSelectValueTest(){
+				$('#commandText').html('您选择了:'+$('#select1').getSelectValue());
+			}
+			function getSelectTextTest(){
+				$('#commandText').html('您选择了:'+$('#select1').getSelectText());
+			}
+			function selectZHTest(){
+				$('#select1').select('zh');
+				$('#commandText').html('控件后台选择了zh（中国）!');
+			}
+			function getSelectAllDataTest(){
+				$('#commandText').html('数据长度:'+$('#select1').getSelectAllData().length);
+			}
+			function reloadSelectTest(){
+				var select1Data = [{id: '0',text: '男'}, {id: '1',text: '女'}];
+				$('#select1').reloadSelect({
+					data:select1Data
+				});
+				$('#commandText').html('控件已成功重新初始化，当前下拉框为男、女；若要测试上面的方法，请重新刷新页面');
+			}
+			function destorySelectTest(){
+				$('#select1').destorySelect();
+				$('#commandText').html('控件已销毁，可以重新初始化');
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

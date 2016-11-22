@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['boot-tree'])
+			bs.loadStyle('../', ['boot-tree']);
+			$(function(){
+				$.get('http://127.0.0.1:3000/base/listMenus',function(d){
+			    		$('#tree').treeview({data: d});  
+			    })
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div class="widget">
+			<div class="widget-title">bootstrap-tree  树控件</div>
+			<div class="widget-banner">界面效果</div>
+			
+			<div id="tree" style="width: 250px;height: 300px;overflow: auto;"></div>
+			
+			<div class="widget-banner">引入模块</div>
+			<div class="blue">bs.loadScript('../', ['boot-tree'])</div>
+			<div class="blue">bs.loadStyle('../', ['boot-tree']);</div>
+			<div class="blue">此标签只能通过JS方法进行初始化</div>
+			
+  			<div class="widget-banner">Usage:</div>
+  			<pre><label class="blue">Html:</label>
+&lt;div id="tree" style="width: 250px;height: 300px;overflow: auto;">&lt;/div>
+<label style="color: #3E8F3E;">JavaScript:</label>
+$('#tree').treeview({data: d});</pre>
+
+<div class="widget-banner">Data Format(数据格式):</div>
+<pre>[
+  {
+    text: "Parent 1",
+    nodes: [
+      {
+        text: "Child 1",
+        nodes: [
+          {
+            text: "Grandchild 1"
+          },
+          {
+            text: "Grandchild 2"
+          }
+        ]
+      },
+      {
+        text: "Child 2"
+      }
+    ]
+  },
+  {
+    text: "Parent 2"
+  },
+  {
+    text: "Parent 3"
+  },
+  {
+    text: "Parent 4"
+  },
+  {
+    text: "Parent 5"
+  }
+];
+<label style="color: #3E8F3E;">Tips:siov-base中有toTreeData方法，可将含id、parentId的数组转换为上述可用格式，参见首页左侧菜单</label>
+</pre>
+  			<div class="widget-banner">Tree Data Property(节点属性):</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>text</td>
+					<td>String(必选项)</td>
+					<td>列表树节点上的文本，通常是节点右边的小图标</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>icon</td>
+					<td>String(可选项)</td>
+					<td>列表树节点上的图标，通常是节点左边的图标。(参见bootstrap icon)</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>selectedIcon</td>
+					<td>String(可选项)</td>
+					<td>当某个节点被选择后显示的图标，通常是节点左边的图标</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>href</td>
+					<td>String(可选项)</td>
+					<td>结合全局enableLinks选项为列表树节点指定URL</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>selectable</td>
+					<td>Boolean</td>
+					<td>指定列表树的节点是否可选择。设置为false将使节点展开，并且不能被选择</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>state</td>
+					<td>Object(可选项)</td>
+					<td>一个节点的初始状态。</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>state.checked</td>
+					<td>Boolean</td>
+					<td>指示一个节点是否处于checked状态，用一个checkbox图标表示</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>state.disabled</td>
+					<td>Boolean</td>
+					<td>指示一个节点是否处于disabled状态。（不是selectable，expandable或checkable）</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>state.expanded</td>
+					<td>Boolean</td>
+					<td>指示一个节点是否处于展开状态</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>state.selected</td>
+					<td>Boolean</td>
+					<td>指示一个节点是否可以被选择</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>color</td>
+					<td>String. Optional</td>
+					<td>节点的前景色，覆盖全局的前景色选项</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>backColor</td>
+					<td>String. Optional</td>
+					<td>节点的背景色，覆盖全局的背景色选项。</td>
+					<td>空</td>
+				</tr>
+				<tr>
+					<td>tags</td>
+					<td>Array of Strings. Optional</td>
+					<td>通过结合全局showTags选项来在列表树节点的右边添加额外的信息。</td>
+					<td>空</td>
+				</tr>
+			</table>
+			<div class="widget-banner">Tree Data Property Demo:</div>
+			<pre>{
+  text: "Node 1",
+  icon: "glyphicon glyphicon-stop",
+  selectedIcon: "glyphicon glyphicon-stop",
+  color: "#000000",
+  backColor: "#FFFFFF",
+  href: "#node-1",
+  selectable: true,
+  state: {
+    checked: true,
+    disabled: true,
+    expanded: true,
+    selected: true
+  },
+  tags: ['available'],
+  nodes: [
+    {},
+    ...
+  ]
+}</pre>
+			
+			<div class="widget-banner">Property:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>data</td>
+					<td>Array</td>
+					<td>列表树上显示的数据</td>
+					<td>[]</td>
+				</tr>
+				<tr>
+					<td>backColor</td>
+					<td>String</td>
+					<td>设置列表树容器的边框颜色，如果不想要边框可以设置showBorder属性为false</td>
+					<td>inherits from Bootstrap.css</td>
+				</tr>
+				<tr>
+					<td>checkedIcon</td>
+					<td>String：class名称</td>
+					<td>设置处于checked状态的复选框图标</td>
+					<td>glyphicon glyphicon-check</td>
+				</tr>
+				<tr>
+					<td>collapseIcon</td>
+					<td>String：class名称</td>
+					<td>设置列表树可收缩节点的图标</td>
+					<td>glyphicon glyphicon-minus</td>
+				</tr>
+				<tr>
+					<td>color</td>
+					<td>String</td>
+					<td>设置列表树所有节点的前景色</td>
+					<td>inherits from Bootstrap.css</td>
+				</tr>
+				<tr>
+					<td>emptyIcon</td>
+					<td>String：class名称</td>
+					<td>设置列表树中没有子节点的节点的图标</td>
+					<td>glyphicon</td>
+				</tr>
+				<tr>
+					<td>enableLinks</td>
+					<td>Boolean</td>
+					<td>是否使用当前节点的文本作为超链接。超链接的href值必须在每个节点的data结构中给出</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>expandIcon</td>
+					<td>String：class名称</td>
+					<td>设置列表树可展开节点的图标</td>
+					<td>glyphicon glyphicon-plus</td>
+				</tr>
+				<tr>
+					<td>highlightSearchResults</td>
+					<td>Boolean</td>
+					<td>是否高亮搜索结果</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>highlightSelected</td>
+					<td>Boolean</td>
+					<td>当选择节点时是否高亮显示</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>onhoverColor</td>
+					<td>String</td>
+					<td>设置列表树的节点在用户鼠标滑过时的背景颜色</td>
+					<td>#F5F5F5</td>
+				</tr>
+				<tr>
+					<td>levels</td>
+					<td>Integer</td>
+					<td>设置继承树默认展开的级别</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>multiSelect</td>
+					<td>Boolean</td>
+					<td>是否可以同时选择多个节点</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>nodeIcon</td>
+					<td>String：class名称</td>
+					<td>设置所有列表树节点上的默认图标</td>
+					<td>glyphicon glyphicon-stop</td>
+				</tr>
+				<tr>
+					<td>selectedIcon</td>
+					<td>String：class名称</td>
+					<td>设置所有被选择的节点上的默认图标</td>
+					<td>glyphicon glyphicon-stop</td>
+				</tr>
+				<tr>
+					<td>searchResultBackColor</td>
+					<td>String</td>
+					<td>设置搜索结果节点的背景颜色</td>
+					<td>undefined, inherits</td>
+				</tr>
+				<tr>
+					<td>searchResultColor</td>
+					<td>String</td>
+					<td>设置搜索结果节点的前景颜色</td>
+					<td>#D9534F</td>
+				</tr>
+				<tr>
+					<td>selectedBackColor</td>
+					<td>String</td>
+					<td>设置被选择节点的背景颜色</td>
+					<td>#428bca</td>
+				</tr>
+				<tr>
+					<td>selectedColor</td>
+					<td>String</td>
+					<td>设置列表树选择节点的背景颜色</td>
+					<td>#FFFFFF</td>
+				</tr>
+				<tr>
+					<td>showBorder</td>
+					<td>Boolean</td>
+					<td>是否在节点上显示边框</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>showCheckbox</td>
+					<td>Boolean</td>
+					<td>是否在节点上显示checkboxes</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>showIcon</td>
+					<td>Boolean</td>
+					<td>是否显示节点图标</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>showTags</td>
+					<td>Boolean</td>
+					<td>是否在每个节点右边显示tags标签。tag值必须在每个列表树的data结构中给出</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>uncheckedIcon</td>
+					<td>String：class名称</td>
+					<td>设置图标为未选择状态的checkbox图标</td>
+					<td>glyphicon glyphicon-unchecked</td>
+				</tr>
+			</table>
+			
+			
+			<div class="widget-banner">Method:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Parameter</th>
+						<th>Description</th>
+						<th>Return</th>
+						<th>Usage</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>checkAll</td>
+					<td>options</td>
+					<td>触发nodeChecked事件，传入silent来阻止其它事件</td>
+					<td></td>
+					<td>$('#tree').treeview('checkAll')</td>
+				</tr>
+				<tr>
+					<td>checkNode</td>
+					<td>node | nodeId, options</td>
+					<td>选择指定的节点，接收节点或节点ID，触发nodeChecked事件，传入silent来阻止其它事件。</td>
+					<td></td>
+					<td>$('#tree').treeview('checkNode', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>clearSearch</td>
+					<td></td>
+					<td>清空以前的搜索结果。例如清除它们的高亮状;触发searchCleared事件</td>
+					<td></td>
+					<td>$('#tree').treeview('clearSearch')</td>
+				</tr>
+				<tr>
+					<td>collapseAll</td>
+					<td>options</td>
+					<td>折叠所有的节点，折叠整个树;触发nodeCollapsed事件</td>
+					<td></td>
+					<td>$('#tree').treeview('collapseAll')</td>
+				</tr>
+				<tr>
+					<td>collapseNode</td>
+					<td>(node | nodeId, options)</td>
+					<td>折叠指定节点和它的子节点。如果不想折叠子节点，可以设置{ ignoreChildren: true };触发nodeCollapsed事件</td>
+					<td></td>
+					<td>$('#tree').treeview('collapseNode', [ nodeId, { silent: true, ignoreChildren: false } ])</td>
+				</tr>
+				<tr>
+					<td>disableAll</td>
+					<td>options</td>
+					<td>禁用所有的节点,触发nodeDisabled事件，传入silent来阻止其它事件</td>
+					<td></td>
+					<td>$('#tree').treeview('disableAll')</td>
+				</tr>
+				<tr>
+					<td>disableNode</td>
+					<td>(node | nodeId, options)</td>
+					<td>禁用指定的节点，接收节点或节点ID;触发nodeDisabled事件</td>
+					<td></td>
+					<td>$('#tree').treeview('disableNode', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>enableAll</td>
+					<td>options</td>
+					<td>启用所有的节点;触发nodeEnabled事件</td>
+					<td></td>
+					<td>$('#tree').treeview('enableAll')</td>
+				</tr>
+				<tr>
+					<td>enableNode</td>
+					<td>(node | nodeId, options)</td>
+					<td>启用指定的节点，接收节点或节点ID;触发nodeEnabled事件</td>
+					<td></td>
+					<td>$('#tree').treeview('enableNode', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>expandAll</td>
+					<td>options</td>
+					<td>展开所有的树节点。也可以展开任何给定级别的树节点；触发nodeExpanded事件</td>
+					<td></td>
+					<td>$('#tree').treeview('expandAll', { levels: 2, silent: true })</td>
+				</tr>
+				<tr>
+					<td>expandNode</td>
+					<td>(node | nodeId, options)</td>
+					<td>展开指定的树节点，接收节点或节点ID。也可以展开任何给定级别的树节点；触发nodeExpanded事件</td>
+					<td></td>
+					<td>$('#tree').treeview('expandNode', [ nodeId, { levels: 2 } ])</td>
+				</tr>
+				<tr>
+					<td>getCollapsed</td>
+					<td></td>
+					<td>返回折叠节点的数组</td>
+					<td></td>
+					<td>$('#tree').treeview('getCollapsed', nodeId)</td>
+				</tr>
+				<tr>
+					<td>getDisabled</td>
+					<td></td>
+					<td>返回被禁用节点的数组</td>
+					<td></td>
+					<td>$('#tree').treeview('getDisabled', nodeId)</td>
+				</tr>
+				<tr>
+					<td>getEnabled</td>
+					<td></td>
+					<td>返回可用节点的数组</td>
+					<td></td>
+					<td>$('#tree').treeview('getEnabled', nodeId)</td>
+				</tr>
+				<tr>
+					<td>getExpanded</td>
+					<td></td>
+					<td>返回所有展开节点的数组</td>
+					<td></td>
+					<td>$('#tree').treeview('getExpanded', nodeId)</td>
+				</tr>
+				<tr>
+					<td>getNode</td>
+					<td>nodeId</td>
+					<td>返回给定节点ID的单一节点对象</td>
+					<td></td>
+					<td>$('#tree').treeview('getNode', nodeId)</td>
+				</tr>
+				<tr>
+					<td>getParent</td>
+					<td>node | nodeId</td>
+					<td>返回给定节点的父节点，如果没有则返回undefined</td>
+					<td></td>
+					<td>$('#tree').treeview('getParent', node)</td>
+				</tr>
+				<tr>
+					<td>getSelected</td>
+					<td></td>
+					<td>返回所有被选择节点的数组</td>
+					<td></td>
+					<td>$('#tree').treeview('getSelected', nodeId)</td>
+				</tr>
+				<tr>
+					<td>getSiblings</td>
+					<td>node | nodeId</td>
+					<td>返回给定节点的兄弟节点的数组，如果没有则返回undefined</td>
+					<td></td>
+					<td>$('#tree').treeview('getSiblings', node)</td>
+				</tr>
+				<tr>
+					<td>getUnselected</td>
+					<td></td>
+					<td>返回没有被选择节点的数组</td>
+					<td></td>
+					<td>$('#tree').treeview('getUnselected', nodeId)</td>
+				</tr>
+				<tr>
+					<td>remove</td>
+					<td></td>
+					<td>移除列表树容器。移除附加的事件、附加对象和额外的html元素</td>
+					<td></td>
+					<td>$('#tree').treeview('remove')</td>
+				</tr>
+				<tr>
+					<td>revealNode</td>
+					<td>node | nodeId, options</td>
+					<td>显示一个树节点，展开从这个节点开始到根节点的所有节点；触发nodeExpanded事件</td>
+					<td></td>
+					<td>$('#tree').treeview('revealNode', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>search</td>
+					<td>pattern, options</td>
+					<td>搜索匹配是非常的指定树节点，并高亮它们。返回配平节点的数组；触发searchComplete事件</td>
+					<td></td>
+					<td>
+						<pre>$('#tree').treeview('search', [ 'Parent', {
+  ignoreCase: true,     // case insensitive
+  exactMatch: false,    // like or equals
+  revealResults: true,  // reveal matching nodes
+}]);</pre>
+					</td>
+				</tr>
+				<tr>
+					<td>selectNode</td>
+					<td>node | nodeId, options</td>
+					<td>选择一个给定的树节点，接收节点或节点ID；触发nodeSelected事件</td>
+					<td></td>
+					<td>$('#tree').treeview('selectNode', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>toggleNodeChecked</td>
+					<td>node | nodeId, options</td>
+					<td>切换节点的Check状态;触发nodeChecked事件或nodeUnchecked事件</td>
+					<td></td>
+					<td>$('#tree').treeview('toggleNodeChecked', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>toggleNodeDisabled</td>
+					<td>node | nodeId, options</td>
+					<td>切换一个节点的可用和不可用状态;触发nodeDisabled事件或nodeEnabled事件</td>
+					<td></td>
+					<td>$('#tree').treeview('toggleNodeDisabled', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>toggleNodeExpanded</td>
+					<td>node | nodeId, options</td>
+					<td>切换一个节点的展开和折叠状态;触发nodeExpanded事件或nodeCollapsed事件</td>
+					<td></td>
+					<td>$('#tree').treeview('toggleNodeExpanded', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>toggleNodeSelected</td>
+					<td>node | nodeId, options</td>
+					<td>切换一个节点的选择状态;触发nodeSelected事件或nodeUnselected事件</td>
+					<td></td>
+					<td>$('#tree').treeview('toggleNodeSelected', [ nodeId])</td>
+				</tr>
+				<tr>
+					<td>uncheckAll</td>
+					<td></td>
+					<td>Uncheck所有的节点;触发nodeUnchecked事件</td>
+					<td></td>
+					<td>$('#tree').treeview('uncheckAll')</td>
+				</tr>
+				<tr>
+					<td>uncheckNode</td>
+					<td>node | nodeId, options</td>
+					<td>Uncheck一个给定的节点，接收节点或节点ID;触发nodeUnchecked事件</td>
+					<td></td>
+					<td>$('#tree').treeview('uncheckNode', [ nodeId]</td>
+				</tr>
+				<tr>
+					<td>unselectNode</td>
+					<td>node | nodeId, options</td>
+					<td>不选择指定的节点，接收节点或节点ID;触发nodeUnselected事件</td>
+					<td></td>
+					<td>$('#tree').treeview('unselectNode', [ nodeId])</td>
+				</tr>
+			</table>	
+			
+			<div class="widget-banner">Event:</div>
+			<pre>$('#tree').treeview({
+  // The naming convention for callback's is to prepend with `on`
+  // and capitalize the first letter of the event name
+  // e.g. nodeSelected -> onNodeSelected
+  onNodeSelected: function(event, data) {
+    // 事件代码...
+});
+or
+$('#tree').on('nodeSelected', function(event, data) {
+  // 事件代码...
+}); 
+<label class="blue">全部事件列表</label>
+nodeChecked (event, node)：一个节点被checked。
+nodeCollapsed (event, node)：一个节点被折叠。
+nodeDisabled (event, node)：一个节点被禁用。
+nodeEnabled (event, node)：一个节点被启用。
+nodeExpanded (event, node)：一个节点被展开。
+nodeSelected (event, node)：一个节点被选择。
+nodeUnchecked (event, node)：一个节点被unchecked。
+nodeUnselected (event, node)：取消选择一个节点。
+searchComplete (event, results)：搜索完成之后触发。
+searchCleared (event, results)：搜索结果被清除之后触发。</pre>
+			
+			<div class="widget-banner">更多信息</div>
+			<label class="blue">官网：<a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201502141379.html" target="_blank">http://www.htmleaf.com/jQuery/Menu-Navigation/201502141379.html</label>
+			
+		</div>
+		
+		
+	</body>
+</html>

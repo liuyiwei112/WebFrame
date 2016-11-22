@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="js/combobox/css/selectordie.css">
+<link rel="stylesheet" href="js/combobox/css/selectordie_theme_01.css">
+<script src="js/combobox/js/selectordie.js"></script>
+<script src="js/combobox/js/initSelect.js"></script>
+<script>
+	$(function(){
+		//初始化下拉框
+		$('#jobType').combobox();
+//		$('#company').combobox();
+		
+		$('#Query').click(function(){
+			alert($('#jobType').getValue())
+			alert($('#jobType').getText())
+		})
+		
+		$('#Set').click(function(){
+			$('#jobType').select(0)
+		})
+		
+		$('#Reload').click(function(){
+			$('#jobType').reload({
+				data:'data/select2.json',
+				showNullItem:true,
+				emptyText:'All'
+			})
+		})
+	})
+</script>
+
+	<h5>combobox使用的第三方控件，在第三方控件之上封装了方法，由于原控件的限制，必须尽量使用ID，原参数参考<a href="http://www.dowebok.com/demo/2014/106/">http://www.dowebok.com/demo/2014/106/</a></h5>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="dtp_input1" class="col-sm-4 control-label query-label padding-ho-5 font14">本地数据：</label>
+				<div class="col-sm-8 padding-ho-5">
+					<select id="jobType"  value="2">
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-12">
+			<button type="button" class="btn btn-default" id="Query">获取下拉框值</button>
+			<button type="button" class="btn btn-default" id="Set">设置下拉框值</button>
+			<button type="button" class="btn btn-default" id="Reload">更新下拉数据</button>
+		</div>
+	</div>
+	
+	
+	<h4><span class="label label-success">1.showNullItem:是否显示空值</span></h4><br/>
+	<h4><span class="label label-success">2.emptyText:空值显示的文本</span></h4><br/>
+	<h4><span class="label label-success">3.idField:ID域，默认为"id"</span></h4><br/>
+	<h4><span class="label label-success">4.textField:文本域，默认为"text"</span></h4><br/>

@@ -1,0 +1,20 @@
+textarea{
+	width: 100%;
+    overflow: hidden;
+    height: auto;
+    border: 0;
+    background: #f1f1f1;
+}
+
+.widget{padding: 5px;}
+.widget-title{margin: 10px 0;font-size: 22px;font-weight: bold;}
+.widget-banner{color: #fc3434;font-size: 16px;padding: 10px 0;font-weight: bold;}
+
+.blue{color: #3E8F3E;padding: 2px 0;}
+.blue-border{border-bottom: 1px #cccccc solid;}
+
+.pro-table{width: 100%;border-top: 1px #cccccc solid;border-left: 1px #cccccc solid;}
+.pro-table th{background: #f2f2f2;color: #000;font-weight: bold;border-right: 1px #cccccc solid;border-bottom: 1px #cccccc solid;padding: 5px;}
+.pro-table td{border-right: 1px #cccccc solid;border-bottom: 1px #cccccc solid;padding: 5px;font-size: 13px;}
+.pro-table tr:nth-child(even){background: #f9f9f9;}
+.pro-table tr.disabled{color: #E0E0E0;}

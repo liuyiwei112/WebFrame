@@ -1,0 +1,58 @@
+/* CSS Document */
+
+/* 滚动条设置 */
+BODY,.page-body{
+    scrollbar-face-color: #a40f0f;
+	scrollbar-arrow-color:#a40f0f;
+	scrollbar-track-color:#f8f8f8;
+}
+
+/* 头部设置 */
+.header{background:#a40f0f}
+.header .logo{background:url('../../image/SIOV-white-50.png') no-repeat 20px 50% #a40f0f;color:#f9f9f9}
+.header .header-right{border-bottom:0}
+
+/* 右侧列表 */
+.user-info>ul>li{background:#a40f0f;}
+.user-info>ul>li>a{color:#fff;}
+.user-info>ul>li:hover{background:#c34444}
+.user-info>ul>li:hover>a{color:#fff}
+.collspan-menu{color:#fff;}
+.collspan-menu:hover{background:#c34444;color:#fff}
+.user-info .dropdown-menu  li a{color:#a40f0f}
+
+/* 左侧导航 */
+.left-nav{}
+.left-nav ul{background:#ffffff;border-right: 1px #a40f0f solid;border-top: 1px #a40f0f solid}
+.left-nav ul li i{color:#a40f0f}
+
+.slider-item{color: #333333;border-bottom:1px #a40f0f solid;}
+
+.popup-menu{border: 1px #a40f0f solid;background: #ffffff;color: #a40f0f;}
+.more-menu li{border:0;}
+
+.more-menu li:hover{background:#a40f0f;color:#ffffff}
+.more-menu li:hover i{color: #ffffff;}
+
+/*tab样式*/
+.tab-all{border-bottom: 1px #a40f0f solid;}
+.tab-all .tab{background: #ffffff;color: #a40f0f;border:1px #a40f0f solid;border-bottom: 0;}
+.tab-all .active{background:#a40f0f ;color: #ffffff;}
+.tab-all .tab i:hover{background: #a40f0f;color: #ffffff;}
+.tab-all .active i:hover{background: #ffffff;color: #a40f0f;}
+.tab-all .tab-last-space{border-bottom:1px #a40f0f solid ;}
+.tab-all .tab-space{border-bottom:1px #a40f0f solid ;}
+
+/*控制tab滚动的按钮*/
+.button{background: #cccccc;border-bottom: 1px #a40f0f solid;}
+.button i{color:#a40f0f ;}
+.button i.disabled{color: #999999;cursor: auto;}
+
+.page-container{border-left: 1px #a40f0f solid;}
+.bottom-panel{border-top:1px #a40f0f solid ;}
+
+.page-title{color:#a40f0f;}
+.page-title i{color:#a40f0f;}
+.page-title h3 span{border-bottom-color:#a40f0f}
+
+.item-bar{color:#a40f0f;}

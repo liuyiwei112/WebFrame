@@ -1,0 +1,226 @@
+[
+    {
+        "id": 1000,
+        "parentId": 0,
+        "text": "首页",
+        "icon": "glyphicon glyphicon-home",
+        "url": "demo/home.html",
+        "tags":["4"],
+        "seqNumber": 1000
+    },
+    {
+        "id": 2000,
+        "parentId": 0,
+        "text": "基本控件",
+        "icon": "glyphicon glyphicon-home",
+        "url": "",
+        "seqNumber": 2000
+    },
+    {
+        "id": 2010,
+        "parentId": 2000,
+        "text": "布局方式",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "demo/layout.html",
+        "seqNumber": 2005
+    },
+    {
+        "id": 201010,
+        "parentId": 2010,
+        "text": "布局方式1",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "demo/layout.html",
+        "seqNumber": 2005
+    },
+    {
+        "id": 201020,
+        "parentId": 2010,
+        "text": "布局方式2",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "demo/layout.html",
+        "seqNumber": 2005
+    },
+     {
+        "id": 20102010,
+        "parentId": 201020,
+        "text": "布局方式21",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "demo/layout.html",
+        "seqNumber": 2005
+    },
+    {
+        "id": 20102020,
+        "parentId": 201020,
+        "text": "布局方式22",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "demo/layout.html",
+        "seqNumber": 2005
+    },
+    {
+        "id": 201030,
+        "parentId": 2010,
+        "text": "布局方式3",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "demo/layout.html",
+        "seqNumber": 2005
+    },
+    {
+        "id": 2020,
+        "parentId": 2000,
+        "text": "日期控件DatePicker",
+        "img": "car-info1.png",
+        "reopen": null,
+        "url": "demo/demo_of_datepicker.html",
+        "seqNumber": 2020
+    },
+    {
+        "id": 2030,
+        "parentId": 2000,
+        "text": "下拉框控件Select",
+        "img": "mile-config1.png",
+        "reopen": null,
+        "url": "demo/demo_of_select.html",
+        "seqNumber": 2030
+    },
+     {
+        "id": 20310,
+        "parentId": 2000,
+        "text": "AutoComplete",
+        "img": "mile-config1.png",
+        "url": "demo/demo_of_complete.html",
+        "seqNumber": 2031
+    },
+    {
+        "id": 2031,
+        "parentId": 2000,
+        "text": "表格控件datagrid",
+        "img": "mile-config1.png",
+        "reopen": null,
+        "url": "demo/datagrid.html",
+        "seqNumber": 2031
+    },
+    {
+        "id": 2040,
+        "parentId": 2000,
+        "text": "按钮控件Button",
+        "img": "obd1.png",
+        "reopen": null,
+        "url": "demo/button.html",
+        "seqNumber": 2040
+    },
+    {
+        "id": 2050,
+        "parentId": 2000,
+        "text": "Tree控件",
+        "img": "car-track1.png",
+        "reopen": null,
+        "url": "demo/demo_of_tree.html",
+        "seqNumber": 2050
+    },
+    {
+        "id": 2060,
+        "parentId": 2000,
+        "text": "车辆定位",
+        "img": "car-location1.png",
+        "reopen": null,
+        "url": "C5DF19BE242B7860C4E11FC6B7F0890AAE13FB2E085B2E5FA2A78E625AB5F24C6CBC2745575E289E10FBE461F8EE4E8F.do?code=A3F259ED5801271DB82F63255096EF27&name=DC8B5F30891A032DBB8A21573794EAA8",
+        "seqNumber": 2060
+    },
+    {
+        "id": 2070,
+        "parentId": 2000,
+        "text": "客户投诉",
+        "img": "complaint.png",
+        "reopen": null,
+        "url": "B487D29AECA3FEEA854FA340BDFB92186A7A25ECE717FC7245FE4278A7A626BB59311BA77C6618351DCE5481D48DFCB3.do?code=A28B2783ABCE4E333C17C4B853EA511F&name=5F8C0D1431FAFA6D3671DABBF17726F0",
+        "seqNumber": 2070
+    },
+    {
+        "id": 2080,
+        "parentId": 2000,
+
+        "text": "年检服务",
+        "img": "annualInspect.png",
+        "reopen": null,
+        "url": "A6B22D03144DCEBFF864E040C1527794496D9A70333DCAE06E0C5D02D302CE38852387B421157DB5326D1DDF912C935359311BA77C6618351DCE5481D48DFCB3.do?code=B901E7B60A71FED043116DEEFC3858B5&name=22E0D7CCACDB525FD0700733D828B591",
+        "seqNumber": 2080
+    },
+    {
+        "id": 2090,
+        "parentId": 2000,
+        "text": "电子栅栏",
+        "img": "electronic.png",
+        "reopen": null,
+        "url": "07C3B8BCF2F5DB00802E3F80BE49E10074E7789DCF449B1D1CBDB96399DA5892CBF7C3BE1D2369EB1F84741BA74CEEED85D9EF694ABE5905C0041E4EC25FAF33.do?code=BE8CDF87839ED8908DCA1953254572E3&name=E1FC3B503DDC2C9F18B56A6B214906F9",
+        "seqNumber": 2090
+    },
+    {
+        "id": 2100,
+        "parentId": 2000,
+        "text": "栅栏监控",
+        "img": "electronic.png",
+        "reopen": null,
+        "url": "07C3B8BCF2F5DB00802E3F80BE49E10074E7789DCF449B1D1CBDB96399DA5892C047AC26FF21C2442DC7C94B4D64C9216CBC2745575E289E10FBE461F8EE4E8F.do?code=83551FF5904140F5E2E0654ED35A77F6&name=2B034BC572CAC6193B41F07675B3CF2E",
+        "seqNumber": 2100
+    },
+    {
+        "id": 3000,
+        "parentId": 0,
+        "text": "实例演示",
+        "img": "customer-manage1.png",
+        "reopen": null,
+        "url": "",
+        "seqNumber": 2000
+    },
+    {
+        "id": 3010,
+        "parentId": 3000,
+        "text": "表格查询",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "html/grid-use-01.html",
+        "seqNumber": 2010
+    },
+    {
+        "id": 3020,
+        "parentId": 3000,
+        "text": "表单校验",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "html/user_add.html",
+        "seqNumber": 2020
+    },
+    {
+        "id": 4000,
+        "parentId": 0,
+        "text": "车辆档案管理",
+        "img": "customer-manage1.png",
+        "reopen": null,
+        "url": "",
+        "seqNumber": 4000
+    },
+    {
+        "id": 4010,
+        "parentId": 4000,
+        "text": "车辆基本信息",
+        "img": "customer-info-manage1.png",
+        "reopen": null,
+        "url": "html/siov/vehicle_list.html",
+        "seqNumber": 4010
+    },
+    {
+        "id": 4180,
+        "parentId": 4000,
+        "text": "违章代办",
+        "img": "annualInspect.png",
+        "reopen": null,
+        "url": "EFEC947CC133CDED94D92D2BCFF6DA3D9AC0C077FDEA043C357D48ACC54D5A5A65A035C84AC3A83616878519B8FA19DF.do?code=4FA0567D938F80DE4CDE56488A60CF8E&name=822CB96D8BB2F474B2AB4027DAD29120",
+        "seqNumber": 2080
+    }
+]

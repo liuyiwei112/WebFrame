@@ -1,0 +1,57 @@
+@import url("../../../css/base.css");
+/*头部tab页*/
+.tab-frame{width:100%;overflow: hidden;float: left;}
+.tab-all{width: 100%;list-style: none;height: 30px;margin-bottom: 0;position: relative;font-size: 12px;}
+.tab-all .tab{text-align: center;line-height: 28px;padding: 0 20px 0 15px;margin: 0 1px;height: 100%;cursor: pointer;position: relative;word-break: keep-all;}
+.tab-all .tab:first-child{margin-left: 0;padding: 0 15px;}
+.tab-space{width: 3px;}
+.tab-space div{width: 3px;height: 3px;overflow: hidden;}
+.tab-last-space{width: 100%;}
+.tab-all .tab i{position: absolute;top: 0;right: 0;border-radius: 50%;}
+
+.button{float: right;width: 50px;position: absolute;right: 0px;top: 70px;height: 30px;text-align: center;}
+.button i{padding: 7px 4px;cursor: pointer;}
+.button i.disabled{cursor: auto;}
+.popup-menu{width: 180px;min-height: 100px;position: absolute;top: 100px;left: 180px;}
+
+/*左侧导航栏*/
+
+.tab-container{width: 100%;overflow-y: hidden;overflow-x: auto;}
+.slider-item{width:100%;min-height:43px;cursor:pointer}
+.slider-item div{height: 100%;line-height: 43px;font-size: 14px;}
+.slider-item .icon{text-align: right;float: left;width: 15%;}
+.slider-item .menu-text{padding-left: 10px;float: left;width: 75%;text-align: left;}
+.slider-item .array-right{float: right;width: 10%;}
+
+.more-menu{margin-top:0 !important;padding:0;clear: both;}
+.more-menu li{border:0;min-height:32px;}
+.more-menu .menu-text{padding-left: 20px;float: left;width: 90%;text-align: left;}
+.more-menu div{line-height: 32px;font-size: 12px;}
+
+/*下拉展开框架*/
+.siov-slider{border-top:1px #DBDBDB solid ;border-left: 1px #DBDBDB solid;border-right: 1px #DBDBDB solid;}
+
+/*combobox下拉菜单*/
+.siov-select .dropdown-menu{width: 100%;}
+.siov-select .btn{width: 100%;height: 30px;position: relative;line-height: 30px;text-align: left;padding: 0;text-indent: 5px;}
+.siov-select .btn label{width: 80%;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+.siov-select .btn .caret{position: absolute;top: 12px;right: 10px;}
+.siov-select .multiselect li{position: relative;}
+.siov-select .multiselect span:first-child{width: 100%;display: inline-block;position: relative;padding: 4px 20px;}
+.siov-select .multiselect span:last-child{position: absolute;right: 10px;top: 5px;font-size: 12px;display: none;}
+.siov-select .multiselect li.selected span:last-child{display: block;}
+.siov-select  .dropdown-menu>li>a{min-height: 25px;}
+
+/*autocomplete*/
+.siov-autocomplete .dropdown-menu{width: 100%;}
+.siov-autocomplete ul{max-height: 200px;overflow-y: auto;}
+.siov-autocomplete .siov-loading{background: url(../../../image/loading2.gif) no-repeat center;background-size: 25px;width: 100%;height: 25px;}
+.siov-autocomplete .tips{text-align: center;}
+.siov-autocomplete .multiselect li{position: relative;}
+.siov-autocomplete .multiselect span:first-child{width: 100%;display: inline-block;position: relative;padding: 4px 20px;}
+.siov-autocomplete .multiselect span:last-child{position: absolute;right: 10px;top: 5px;font-size: 12px;display: none;}
+.siov-autocomplete .multiselect li.selected span:last-child{display: block;}
+
+/*grid*/
+.bootstrap-table{margin-top: 10px;padding: 0 10px;}
+.bootstrap-table .fixed-table-header th:first-child{border-left: 0;}

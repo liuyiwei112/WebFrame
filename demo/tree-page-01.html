@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['boot-tree'])
+			bs.loadStyle('../', ['boot-tree']);
+
+			$(function() {
+				$.getJSON('../data/menu.json',function(d){
+			    		$('#tree').treeview({
+			    			data: d.toTreeData(0),
+			    			showTags:true,
+			    			expandIcon:'glyphicon glyphicon-chevron-right',
+			    			collapseIcon:'glyphicon glyphicon-chevron-down'
+			    		});
+			    })
+			})
+		</script>
+		<title></title>
+	</head>
+
+	<body>
+		<div id="tree" style="width: 250px;"></div>
+	</body>
+
+</html>

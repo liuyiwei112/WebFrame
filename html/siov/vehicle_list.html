@@ -1,0 +1,386 @@
+	<div class="item-bar">
+		<i class="glyphicon glyphicon-search"></i>
+		查询条件
+	</div>
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="form-group">
+				<label for="dtp_input1" class="col-sm-4 control-label query-label padding-ho-5 font14">车牌号：</label>
+				<div class="col-sm-8 padding-ho-5">
+					<input type="text" class="form-control" id="carNo" name="dtp_input1">
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="form-group">
+				<label for="dtp_input1" class="col-sm-4 control-label query-label padding-ho-5 font14">车系车型：</label>
+				<div class="col-sm-8 padding-ho-5">
+					<select id="" url="" value="" idField="ID" textField="text" showNullItem="true">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="form-group">
+				<label for="dtp_input1" class="col-sm-4 control-label query-label padding-ho-5 font14">客户姓名/电话：</label>
+				<div class="col-sm-8 padding-ho-5">
+					<input type="text" class="form-control" id="mobile" name="dtp_input1">
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="form-group">
+				<label for="dtp_input1" class="col-sm-4 control-label query-label padding-ho-5 font14">VIN码：</label>
+				<div class="col-sm-8 padding-ho-5">
+					<input type="text" class="form-control" id="vinCode" name="dtp_input1">
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<button type="button" class="btn btn-info" id="Query">查询</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-success" id="Add">新增</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-success" id="Update">编辑</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-danger" id="Delete">删除</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-info" id="Delete">模版下载</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-info" id="Delete">导入</button>&nbsp;&nbsp;
+		</div>
+	</div>
+	
+	<div class="item-bar">
+		<i class="glyphicon glyphicon-list"></i>
+		车辆列表
+	</div>
+	
+	<table data-cache="false" id="empTable" data-side-pagination="server"
+		data-height="0" data-pagination="true" data-page-size="10"
+		data-page-list="[5, 10, 20, 50, 100, 200]">
+	    <thead>
+	        <tr>
+	        	<th data-checkbox="true"></th>
+	        	<th data-field="carNo">车牌号</th><!-- data-visible="false" -->
+	            <th data-field="carSeriesName">车系</th>
+	        	<th data-field="carTypeName">车型</th>
+	            <th data-field="carColorName">颜色</th>
+	            <th data-field="gearBoxTypeName">变速箱类型</th>
+	        	<th data-field="engineNo">发动机号</th>
+	        	<th data-field="vinCode">VIN码</th>
+				<th data-field="sweptVolume">排量</th>
+	        	<th data-field="fuelTypeName">燃油型号</th>
+	        	<th data-field="">车辆照片</th>
+	        	<th data-field="">客户姓名</th>
+	        	<th data-field="mobile">客户电话</th>
+	        	<th data-field="createDate">创建时间</th>
+	        </tr>
+	    </thead>
+	</table>
+
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="newUser" tabindex="-1" role="dialog" 
+	   aria-labelledby="myModalLabel" aria-hidden="true" backdrop="static">
+	   <div class="modal-dialog">
+	      <div class="modal-content">
+	         <div class="modal-header ">
+	         	<div class="modal-title">
+		            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		            <div class="item-bar item-bar-box modal_title">
+						<i class="glyphicon glyphicon-plus"></i>
+						新增车辆
+					</div>
+	         	</div>
+	         </div>
+	         <div class="modal-body">
+	            <form id="vehicle_form" class="form-horizontal">
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label requiredinput">车牌号</label>
+	                    <div class="col-lg-5">
+				      		<input type="text" class="form-control" id="" name=""
+				         		placeholder="请输入车牌号">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label requiredinput">车型</label>
+	                    <div class="col-lg-5">
+<!-- 	                    	<select id="" url="queryCompanyTypeList" value="" idField="ID" textField="text" showNullItem="true" emptyText="自定义，默认‘全部’"> -->
+<!-- 							</select> -->
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label requiredinput">车系</label>
+	                </div>
+	
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">颜色</label>
+	                    <div class="col-lg-5">
+  	                    	<select id="carColor" url="getOaDictionary?dataType=37&sysFlag=SIOV" value="" idField="itemCode" textField="itemName" showNullItem="true"> 
+ 							</select>
+	                    </div>
+	                </div>
+	               	<div class="form-group">
+	                    <label class="col-lg-3 control-label">变速箱</label>
+	                    <div class="col-lg-5">
+	                    	<select id="carGearBoxType" url="getOaDictionary?dataType=49&sysFlag=SIOV" value="" idField="itemCode" textField="itemName" showNullItem="true">
+							</select>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">排量</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">燃油型号</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">发动机号</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">VIN码</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name=""
+				         		placeholder="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">当前里程</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name=""
+				         		placeholder="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">上次保养里程</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name=""
+				         		placeholder="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">客户姓名</label>
+	                    <div class="col-lg-5">
+	                        <input type="text" class="form-control" id="" name=""
+				         		placeholder="">
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-lg-3 control-label">车辆照片</label>
+	                    <div class="col-lg-5">
+							<input type="text" class="form-control" id="" name=""
+				         		placeholder="请选择文件">
+							<input type="file" id="inputfile">
+	                    </div>
+	                </div>
+	
+	                <div class="form-group">
+	                    <div class="col-lg-9 col-lg-offset-3">
+	                        <button type="button" class="btn btn-primary" id="add_submit">保存</button>
+	                    </div>
+	                </div>
+	            </form>
+	         
+	         </div>
+	         <!-- 
+	         <div class="modal-footer">
+	            <button type="button" class="btn btn-default" 
+	               data-dismiss="modal">关闭
+	            </button>
+	            <button type="button" class="btn btn-primary">
+	               提交更改
+	            </button>
+	         </div>
+	          -->
+	      </div>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		var $table = $('#empTable').bootstrapTable({dataType:'json'});
+		//初始化下拉框
+		$('#company').combobox();
+		$("#carColor").combobox();
+		$("#carGearBoxType").combobox();
+		
+		$('.startDate,.endDate').datetimepicker({
+	        language:'zh-CN',
+	        minView:4,
+	        autoclose:true,
+	        todayBtn:true,
+	        format:'yyyy-mm-dd'
+	    });
+	    
+	    $('.input-daterange input').each(function (){
+			$(this).datetimepicker('clearDates');
+		});
+		
+		$('#Query').click(function(){
+			var carNo = $('#carNo').val();
+			var mobile = $('#mobile').getValue();
+			var vinCode = $('#vinCode').val();
+			//var endDate = $('#endDate').val();
+			$table.bootstrapTable('refresh', {url:apiUrl2+'queryVehicleInfoList'});
+		});
+		
+		var userId;
+		$('#Add').click(function(){
+			userId = '-1';
+			$('#add_userName,#add_password,#add_mobile,#add_idNumber').val('');
+			$('.modal_title').html('<i class="glyphicon glyphicon-plus"></i>新增用户');
+			$('#newUser').modal({
+				backdrop:'static',
+				keyboard:false
+			})
+		})
+		
+		$('#Update').click(function(){
+			var selects = $table.bootstrapTable('getSelections');
+			if(selects.length>1){
+				alert('请选择一条记录，不能多选');
+				return;
+			}
+			if(selects.length==0){
+				alert('请选择一条记录');
+				return;
+			}
+			var row = selects[0];
+            userId = row.userId;
+            //初始化
+            var userName = $('#add_userName').val(row.userName);
+			var password = $('#add_password').val(row.password);
+			var mobile = $('#add_mobile').val(row.mobile);
+			var idNumber = $('#add_idNumber').val(row.idNumber);
+			
+			$('#add_userId').val(row.rowId);
+			$('.modal_title').html('<i class="glyphicon glyphicon-edit"></i>修改用户');
+            
+            $('#newUser').modal({
+				backdrop:'static',
+				keyboard:false
+			})
+            
+		})
+		
+		
+		$('#vehicle_form').bootstrapValidator({
+	        message: 'This value is not valid',
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	            add_userName: {
+	                message: 'The username is not valid',
+	                validators: {
+	                    notEmpty: {
+	                        message: '用户姓名不能为空'
+	                    },
+	                    stringLength: {
+	                        min: 2,
+	                        max: 6,
+	                        message: '用户姓名必须在2-6个字之间'
+	                    }
+	                }
+	            },
+	            add_password: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '用户密码不能为空'
+	                    }
+	                }
+	            },
+	            add_idNumber:{
+	            	validators: {
+	            		notEmpty: {
+	                        message: '身份证号码不能为空'
+	                    },
+	                    stringLength: {
+	                        min: 15,
+	                        max: 18,
+	                        message: '请输入15或者18位身份证号'
+	                    }
+	                }
+	            }
+	        }
+	    }).on('error.form.bv', function(e) {
+	    	//校验不通过
+	    	e.preventDefault();
+	    }).on('success.form.bv',function(e){
+	    	//校验通过
+	    	e.preventDefault();
+	    	//新增
+	    	var userName = $('#add_userName').val();
+			var password = $('#add_password').val();
+			var mobile = $('#add_mobile').val();
+			var idNumber = $('#add_idNumber').val();
+	    	if(userId=='-1'){
+				doPostP('addUser',{'userName':userName,'password':password,'mobile':mobile,'idNumber':idNumber},function(d){
+					if(d.success){
+						alert('新增成功');
+						$('#newUser').modal('hide');
+					}else{
+						alert('新增失败');
+					}
+				});
+	    	}else{
+	    	//修改	
+	    		doPostP('updateUser',{'userId':userId,'userName':userName,'password':password,'mobile':mobile,'idNumber':idNumber},function(d){
+					if(d.success){
+						alert('修改成功');
+						$('#add_userName,#add_password,#add_mobile,#add_idNumber').val('');
+						$('#newUser').modal('hide');
+					}else{
+						alert('修改失败');
+					}
+				});
+	    	}
+	    	
+	    });
+	    
+	    $('#add_submit').click(function(){
+	    	$('#vehicle_form').bootstrapValidator('validate');
+	    })
+		
+		$('#Delete').click(function(){
+			var selects = $table.bootstrapTable('getSelections');
+            ids = $.map(selects, function (row) {
+                return row.userId;
+            });
+            if(!ids){
+            	alert('请选择至少一条数据');
+            }
+            doGetP('deleteUser?userIds='+ids,function(d){
+				if(d.success){
+					alert('删除成功');
+			        $table.bootstrapTable('remove', {
+			            field: 'userId',
+			            values: ids
+			        });
+				}else{
+					alert('保存失败');
+				}
+			});
+            
+		
+		})
+		
+	});
+	
+	function formatDate(value,row){
+		return clearDateT(value);
+	}
+</script>	
+
+
+
+
+
+

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['select', 'complete', 'boot-date', 'boot-table'])
+			bs.loadStyle('../', ['boot-date', 'boot-table']);
+
+			$(function() {
+				$('#xingbie').initSelect({
+					data: [{
+						id: '0',
+						text: '男'
+					}, {
+						id: '1',
+						text: '女'
+					}],
+					showNullItem: true,
+					emptyText: '全选',
+					onChange: function(id, text) {
+						//						alert(id + '@@' + text);
+					}
+				});
+
+				$('#lottery').complete({
+					support: function(key, callback) {
+						$.ajax({
+							type: "GET",
+							dataType: "json",
+							url: "http://127.0.0.1:3000/base/getCountryByKey?key=" + key,
+							success: function(data) {
+								callback(data); //需回传一个对象数组，创建下拉列表
+							}
+						})
+					},
+					idField: 'id',
+					textField: 'text',
+					onChange: function(id, text) {
+						//						alert('您选择了：'+id + '@@' + text);
+					}
+				})
+
+				//选择年月日的 startView: 2, minView: 2
+				$('.hire_date').datetimepicker({
+					startView: 2,
+					minView: 2,
+					autoclose: true, //选择后是否自动关闭
+					todayBtn: true, //显示当天
+					format: 'yyyy-mm-dd' //返回的格式
+				}).on('changeDate', function(ev) {
+					alert(dt.getDateStr(ev.date, 'yyyy-mm-dd'));
+				});
+				//选择年月的 startView: 3, minView: 3
+				$('.fire_date').datetimepicker({
+					startView: 3,
+					minView: 3
+				});
+				//选择年的 startView: 4, minView: 4
+				$('.summary-year').datetimepicker({
+					startView: 4,
+					minView: 4
+				});
+				//				alert('key=@key&&key2=@key'.replace(/@key/g,'123'));
+
+				var $table = $('#resultGrid3').bootstrapTable({
+                    url:bs.apiUrl+'getPageTripStatisticByWeek?carId=961238391800869',
+                    cache:false,
+                    queryParams:function(){
+                    		return {
+                    			'a':1,
+                    			'b':2
+                    		}
+                    },//自定义参数
+                    responseHandler:function(sourceData){
+//                  		alert('responseHandler');
+                    		return {
+				            "content": sourceData.content,//如果自定义则需要返回自定义的名称
+				            "totalElements": sourceData.totalElements
+				        }
+                    },//自定义处理函数，如果需要特殊处理的返回
+                    pageSize:2,//每页数量，默认名称pageSize，可通过pSizeName自定义名称
+                    pageNumber:1,//默认为1，当前页码
+                    indexOffset:1,//默认为1，页码偏移量，起始页码为 pageNumber - indexOffset
+                    pagination:true,
+                    dataName:'content',//自定义数据名称
+                    totalName:'totalElements',//自定义数据总行数
+                    pIndexName:'page',//自定义分页数名称，如 ?page=0
+                    pSizeName:'size',//自定义每页数量名称 如 ?size=10
+                    sidePagination:'server'
+                });
+                
+			})
+
+			function getAll() {
+				var name = $('#username').val();
+				var xingbie = $('#xingbie').getSelectValue();
+				var xingbieStr = $('#xingbie').getSelectText();
+				var country = $('#country').getSelectValue();
+				var countryStr = $('#country').getSelectText();
+				var alertType = $('.alermType').getSelectValue();
+				var alertTypeStr = $('.alermType').getSelectText();
+				var lottory = $('#lottery').getCompValue();
+				var lottoryStr = $('#lottery').getCompText();
+				var newsType = $('.newsType').getCompValue();
+				var newsTypeStr = $('.newsType').getCompText();
+				var hireDate = $('.hire_date').find('input').val();
+				var fireDate = $('.fire_date').val();
+				var summaryYear = $('.summary-year').val();
+
+				alert('姓名：' + name + '\n' +
+					'性别：' + xingbie + ';' + xingbieStr + '\n' +
+					'国家:' + country + ';' + countryStr + '\n' +
+					'类别:' + alertType + ';' + alertTypeStr + '\n' +
+					'彩票种类:' + lottory + ';' + lottoryStr + '\n' +
+					'新闻类别:' + newsType + ';' + newsTypeStr + '\n' +
+					'入职时间:' + hireDate + '\n' +
+					'离职月份:' + fireDate + '\n' +
+					'统计年份:' + summaryYear + '\n'
+				)
+			}
+
+			function setMale() {
+				$('#xingbie').select(0);
+				$('#country').select([0, 1])
+			}
+			
+			function queryTable1(){
+				var table1 = $('#resultGrid1').bootstrapTable({});
+				table1.bootstrapTable('refresh',{url: bs.apiUrl+'getPageTripStatisticByWeek?carId=961238391800869'})
+			}
+		</script>
+		<title></title>
+	</head>
+
+	<body>
+
+		<div class="table-item-bar">
+			<div class="left-bar">
+				<i class="glyphicon glyphicon-search"></i>
+				<label class="item-bar-title">查询条件</label>
+			</div>
+			<div class="right-bar">
+				<i class="glyphicon glyphicon glyphicon-eye-close"></i>
+			</div>
+			<div class="blank1"></div>
+		</div>
+
+		<div class="query-area">
+			<table class="query-table">
+				<tr>
+					<td class="query-label">
+						姓名：
+					</td>
+					<td>
+						<input type="text" class="form-control" id="username">
+					</td>
+					<td class="query-label">
+						密码：
+					</td>
+					<td>
+						<input type="password" class="form-control" id="username">
+					</td>
+					<td class="query-label">
+						select JS
+					</td>
+					<td>
+						<div id="xingbie" class="siov-select"></div>
+					</td>
+					<td class="query-label">
+						select标签
+					</td>
+					<td>
+						<div class="siov-select alermType" data-toggle="select" data-url="http://127.0.0.1:3000/base/getCountry" data-default-value="zh"
+							data-multi-select="true" data-id-field="id" data-text-field="text"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="query-label">
+						Complete Js
+					</td>
+					<td>
+						<div id="lottery" class="siov-autocomplete"></div>
+					</td>
+					<td class="query-label">
+						Compelete标签
+					</td>
+					<td>
+						<div class="siov-autocomplete newsType" data-toggle="complete" data-url="http://127.0.0.1:3000/base/getCountryByKey" data-multi-select="true"></div>
+					</td>
+					<td class="query-label">
+						入职时间
+					</td>
+					<td>
+						<div class="input-group date hire_date" data-link-format="yyyy-mm-dd">
+							<input size="16" type="text" value="" readonly class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-th glyphicon-remove"></span></span>
+						</div>
+					</td>
+					<td class="query-label">
+						离职月份：
+					</td>
+					<td>
+						<input type="text" value="" class="fire_date form-control" data-date-format="yyyy-mm" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<td class="query-label">
+						统计年份：
+					</td>
+					<td>
+						<input type="text" value="" class="summary-year form-control" data-date-format="yyyy" readonly="readonly">
+					</td>
+
+				</tr>
+				<tr>
+					<td colspan="6">
+						<button type="button" class="btn btn-default" onclick="getAll()">获取所有控件的值</button>
+
+						<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+						<button type="button" class="btn btn-primary" onclick="setMale()">设置“男”\“中国”、“美国”</button>
+
+						<!-- 表示一个成功的或积极的动作 -->
+						<button type="button" class="btn btn-success" onclick="queryTable1()">加载第一个table数据</button>
+
+						<!-- 信息警告消息的上下文按钮 -->
+						<button type="button" class="btn btn-info">信息按钮</button>
+
+						<!-- 表示应谨慎采取的动作 -->
+						<button type="button" class="btn btn-warning">警告按钮</button>
+
+						<!-- 表示一个危险的或潜在的负面动作 -->
+						<button type="button" class="btn btn-danger">危险按钮</button>
+
+						<!-- 并不强调是一个按钮，看起来像一个链接，但同时保持按钮的行为 -->
+						<button type="button" class="btn btn-link">链接按钮</button>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+		<div class="table-item-bar">
+			<div class="left-bar">
+				<i class="glyphicon glyphicon-search"></i>
+				<label class="item-bar-title">查询结果</label>
+			</div>
+			<div class="right-bar">
+			</div>
+			<div class="blank1"></div>
+		</div>
+		
+		<table data-toggle="table" id="resultGrid1" data-height="0" data-click-to-select="true" data-page-number="1" data-page-size="2"
+			data-pagination="true" data-side-pagination="server"
+			data-data-name="content" data-total-name="totalElements" data-p-index-name="page" data-p-size-name="size">
+		    <thead>
+		    <tr>
+		        <th data-field="state" data-checkbox="true"></th>
+		        <th data-field="tripDate">Item ID</th>
+		        <th data-field="totleMile">Item Name</th>
+		        <th data-field="totleTime">Item Price</th>
+		        <th data-field="totalOil">Item Price</th>
+		        <th data-field="totleSharpSpeedup">Item Price</th>
+		        <th data-field="sharpSlow">Item Price</th>
+		    </tr>
+		    </thead>
+		</table>
+		
+		<!--通过JS定义参数初始化table-->
+		<table id="resultGrid3" data-height="0" data-click-to-select="true">
+		    <thead>
+		    <tr>
+		        <th data-field="state" data-checkbox="true"></th>
+		        <th data-field="tripDate">Item ID</th>
+		        <th data-field="totleMile">Item Name</th>
+		        <th data-field="totleTime">Item Price</th>
+		        <th data-field="totalOil">Item Price</th>
+		        <th data-field="totleSharpSpeedup">Item Price</th>
+		        <th data-field="sharpSlow">Item Price</th>
+		    </tr>
+		    </thead>
+		</table>
+
+		<!--
+		<div class="query-table">
+			<h3>普通输入框功能基于bootstrap样式</h3>
+			<div class="query-area">
+				<div class="query-block">
+					普通输入框：<input type="text" class="form-control width150" placeholder="Search">
+				</div>
+				<div class="query-block">
+					密码输入框：<input type="password" class="form-control width150">
+				</div>
+			</div>
+			<div class="query-area">
+				<div class="query-block">
+					横排复选框：
+					<label class="checkbox-inline">
+			      <input type="checkbox" id="inlineCheckbox1" value="option1"> 选项 1
+			   </label>
+					<label class="checkbox-inline">
+			      <input type="checkbox" id="inlineCheckbox2" value="option2"> 选项 2
+			   </label>
+					<label class="checkbox-inline">
+			      <input type="checkbox" id="inlineCheckbox3" value="option3"> 选项 3
+			   </label>
+				</div>
+				<div class="query-block">
+					横排单选框：
+					<label class="checkbox-inline">
+			      <input type="radio" name="optionsRadiosinline" id="optionsRadios3" 
+			          value="option1" checked> 选项 1
+			   </label>
+					<label class="checkbox-inline">
+			      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" 
+			          value="option2"> 选项 2
+			   </label>
+				</div>
+			</div>
+			<div class="query-area">
+				<div class="query-block">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">选项 1</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">选项 2</label>
+					</div>
+				</div>
+
+				<div class="query-block">
+					<div class="radio">
+						<label>
+				      <input type="radio" name="optionsRadios" id="optionsRadios1" 
+				          value="option1" checked> 选项 1
+				   </label>
+					</div>
+					<div class="radio">
+						<label>
+				      <input type="radio" name="optionsRadios" id="optionsRadios2" 
+				          value="option2">
+				         选项 2 - 选择它将会取消选择选项 1
+				   </label>
+					</div>
+				</div>
+			</div>
+			<div class="query-area">
+				<div class="query-block">
+					文本域输入框：
+					<textarea rows="3" class="form-control width150"></textarea>
+				</div>
+			</div>
+			<div class="query-area">
+				<div class="query-block">
+				</div>
+			</div>
+		</div>-->
+	</body>
+
+</html>

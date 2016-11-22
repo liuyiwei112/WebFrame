@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['boot-date'])
+			bs.loadStyle('../', ['boot-date']);
+		</script>
+		
+	</head>
+	<body>
+		<div class="widget">
+			<div class="widget-title">bootstrap-datepicker   日期弹出选择框</div>
+			<div class="widget-banner">界面效果</div>
+			<table class="query-table">
+				<tr>
+					<td class="query-label">选择年月日(从周一开始)：</td>
+					<td>
+						<div data-provide="datetimepicker-inline" class="input-group date hire_date" data-date-autoclose="true" data-date-today-btn="true"
+							data-start-view="2" data-min-view="2" data-date-format="yyyy-mm-dd" data-date-weekstart="1" data-date-startdate="2016-11-15"
+							data-date-days-of-week-disabled="0,6" data-date-today-highligh="true">
+							<input size="16" type="text" value="" readonly class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-th glyphicon-remove"></span></span>
+						</div>
+					</td>
+					<td class="query-label">选择年月：</td>
+					<td>
+						<input data-provide="datetimepicker-inline" type="text" value="" class="form-control" data-date-format="yyyy-mm" 
+							data-start-view="3" data-min-view="3" readonly="">
+					</td>
+					<td class="query-label">选择年：</td>
+					<td>
+						<input data-provide="datetimepicker-inline" type="text" value="" class="form-control" data-date-format="yyyy" readonly="readonly"
+							data-start-view="4" data-min-view="4">
+					</td>
+				</tr>
+			<table>
+			
+			<div class="widget-banner">引入模块</div>
+			<div class="blue">bs.loadScript('../', ['boot-date'])</div>
+			<div class="blue">bs.loadStyle('../', ['boot-date'])</div>
+			<div class="blue">界面初始化后自动加载 data-provide="datetimepicker-inline" 的标签</div>
+			
+			<div class="widget-banner">Usage 1:</div>
+			<pre><label class="blue">纯Html组合按钮(选择年月日):</label>
+&lt;div data-provide="datetimepicker-inline" class="input-group date" data-date-autoclose="true" data-date-today-btn="true"
+	data-start-view="2" data-min-view="2" data-date-format="yyyy-mm-dd"&gt;
+	&lt;input size="16" type="text" value="" readonly class="form-control"&gt;
+	&lt;span class="input-group-addon"&gt;&lt;span class="glyphicon glyphicon-th glyphicon-remove"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;
+<label class="blue">纯Html简单模式(选择年月):</label>	
+&lt;input data-provide="datetimepicker-inline" type="text" value="" class="form-control" data-date-format="yyyy-mm" 
+	data-start-view="3" data-min-view="3"&gt;
+<label class="blue">纯Html简单模式(选择年):</label>	
+&lt;input data-provide="datetimepicker-inline" type="text" value="" class="form-control" data-date-format="yyyy" 
+	data-start-view="4" data-min-view="4"&gt;	</pre>
+  			<div class="widget-banner">Usage 2:</div>
+  			<pre><label class="blue">Html:</label>
+&lt;input id="datepicker1" type="text" value="" class="form-control" readonly="readonly"/>
+<label style="color: #3E8F3E;">JavaScript:</label>
+$('#datepicker1').datetimepicker({
+	startView: 2,
+	minView: 2,
+	autoclose: true, //选择后是否自动关闭
+	todayBtn: true, //显示当天
+	format: 'yyyy-mm-dd' //返回的格式
+}).on('changeDate', function(ev) {
+	//dt是日期的工具类，详细请查看siov-date.js
+	alert(dt.getDateStr(ev.date, 'yyyy-mm-dd'));
+})</pre>
+  			<div class="widget-banner">Property:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Html Name</th>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Default</th>
+						<th>Usage</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>format</td>
+					<td>data-date-format</td>
+					<td>String</td>
+					<td>返回的日期格式</td>
+					<td>mm/dd/yyyy</td>
+					<td>{format:'yyyy-mm-dd'} or data-date-format="yyyy-mm-dd"</td>
+				</tr>
+				<tr>
+					<td>startView</td>
+					<td>data-start-view</td>
+					<td>Number,String</td>
+					<td>日期时间选择器打开之后首先显示的视图(0:小时、1:日期、2:月、3:年：4：10年)</td>
+					<td>2(月)</td>
+					<td>{startView:2} or data-start-view="2" </td>
+				</tr>
+				<tr>
+					<td>minView</td>
+					<td>data-min-view</td>
+					<td>Number,String</td>
+					<td>日期选择向下精准到什么程度，如默认0（属性值与startView相同含义），则一直选择到小时为止</td>
+					<td>0(小时)</td>
+					<td>{minView:2} or data-min-view="2" </td>
+				</tr>
+				<tr>
+					<td>weekStart</td>
+					<td>data-date-weekstart</td>
+					<td>String</td>
+					<td>日历中显示从哪一天开始。0（星期日）到6（星期六）</td>
+					<td>0(星期日)</td>
+					<td>{weekStart:1} or data-date-weekstart="1" </td>
+				</tr>
+				<tr>
+					<td>startDate</td>
+					<td>data-date-startdate</td>
+					<td>Date,String</td>
+					<td>日历中显示的最早的时间，小于此时间则禁用</td>
+					<td>空</td>
+					<td>{startDate:new Date()} or data-date-startdate="2016-11-15" </td>
+				</tr>
+				<tr>
+					<td>endDate</td>
+					<td>data-date-enddate</td>
+					<td>Date,String</td>
+					<td>日历中显示的最晚的时间，大于此时间则禁用</td>
+					<td>空</td>
+					<td>{endDate:new Date()} or data-date-enddate="2016-11-15" </td>
+				</tr>
+				<tr>
+					<td>daysOfWeekDisabled</td>
+					<td>data-date-days-of-week-disabled</td>
+					<td>Array</td>
+					<td>每周的哪一天禁用</td>
+					<td>空</td>
+					<td>{daysOfWeekDisabled:[0,6]} or data-date-days-of-week-disabled="0,6" </td>
+				</tr>
+				<tr>
+					<td>autoclose</td>
+					<td>data-date-autoclose</td>
+					<td>Boolean</td>
+					<td>选中日期后是否关闭选择框</td>
+					<td>false</td>
+					<td>{autoclose:true} or data-date-autoclose="true" </td>
+				</tr>
+				<tr>
+					<td>todayBtn</td>
+					<td>data-date-today-btn</td>
+					<td>Boolean</td>
+					<td>是否在日历底部显示“今日”按钮</td>
+					<td>false</td>
+					<td>{todayBtn:true} or data-date-today-btn="true" </td>
+				</tr>
+				<tr>
+					<td>todayHighlight(实测不生效)</td>
+					<td>data-date-today-highligh</td>
+					<td>Boolean</td>
+					<td>是否高亮显示当前日期</td>
+					<td>false</td>
+					<td>{todayHighlight:true} or data-date-today-highligh="true" </td>
+				</tr>
+				<tr>
+					<td>keyboardNavigation</td>
+					<td>data-date-keyboard-navigation</td>
+					<td>Boolean</td>
+					<td>是否允许通过方向键改变日期</td>
+					<td>true</td>
+					<td>{keyboardNavigation:true} or data-date-keyboard-navigation="true" </td>
+				</tr>
+			</table>
+			
+			<div class="widget-banner">Method:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Parameter</th>
+						<th>Description</th>
+						<th>Return</th>
+						<th>Usage</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>remove</td>
+					<td>无</td>
+					<td>销毁对象</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('remove');</td>
+				</tr>
+				<tr>
+					<td>show</td>
+					<td>无</td>
+					<td>显示日期时间选择器</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('show');</td>
+				</tr>
+				<tr>
+					<td>hide</td>
+					<td>无</td>
+					<td>隐藏日期时间选择器</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('hide');</td>
+				</tr>
+				<tr>
+					<td>update</td>
+					<td>无</td>
+					<td>使用当前输入框中的值更新日期时间选择器</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('update');</td>
+				</tr>
+				<tr>
+					<td>setStartDate</td>
+					<td>startDate (String)</td>
+					<td>给日期时间选择器设置一个新的起始日期</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('setStartDate', '2012-01-01');
+						$('#datetimepicker').datetimepicker('setEndDate');//取消
+					</td>
+				</tr>
+				<tr>
+					<td>setEndDate</td>
+					<td>endDate (String)</td>
+					<td>给日期时间选择器设置结束日期</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('setEndDate', '2012-01-01');
+						$('#datetimepicker').datetimepicker('setEndDate');//取消
+					</td>
+				</tr>
+				<tr>
+					<td>setDaysOfWeekDisabled</td>
+					<td>daysOfWeekDisabled (String|Array)</td>
+					<td>设置禁选的日期（每周几）</td>
+					<td>无</td>
+					<td>$('#datetimepicker').datetimepicker('setDaysOfWeekDisabled', [0,6]); or
+						$('#datetimepicker').datetimepicker('setDaysOfWeekDisabled'); //取消
+					</td>
+				</tr>
+			</table>	
+			
+			<div class="widget-banner">Event:</div>
+			<table class="pro-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Return</th>
+						<th>Usage</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>changeDate</td>
+					<td>当日期被改变时被触发</td>
+					<td>event{data:Date}</td>
+					<td>$('#date-end').datetimepicker().on('changeDate', function(ev){
+						    alert(ev.date);
+						});
+					</td>
+				</tr>
+			</table>	
+			
+		</div>
+		
+		
+	</body>
+</html>

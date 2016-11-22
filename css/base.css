@@ -1,0 +1,78 @@
+
+/* Global Setting */
+body {padding: 0;border: 0;margin: 0;font-family: "Microsoft YaHei";font-size: 12px;background:#ffffff !important}
+ol,ul,a {list-style: none;padding: 0;border: 0;margin: 0;}
+button{outline:none !important}
+a{text-decoration: none !important;cursor:pointer;outline:none !important;}
+a:active{text-decoration: none !important;cursor:pointer;outline:none !important;}
+a:hover{text-decoration: none !important;cursor:pointer;outline:none !important;}
+a:link{text-decoration: none !important;cursor:pointer;outline:none !important;}
+a:visited{text-decoration: none !important;cursor:pointer;outline:none !important;}
+label{font-weight: normal;}
+
+
+
+.fl{float: left;}
+.fr{float:right;}
+
+
+.width10 {width: 10%;}
+.width15 {width: 15%;}
+.width20 {width: 20%;}
+.width25 {width: 25%;}
+.width30 {width: 30%;}
+.width33 {width: 33.3%;}
+.width35 {width: 35%;}
+.width40 {width: 40%;}
+.width45 {width: 45%;}
+.width49 {width: 49%;}
+.width49-5 {width: 49.5%;}
+.width49-5 {width: 49.5%;}
+.width50 {width: 50%;}
+.width55 {width: 55%;}
+.width60 {width: 60%;}
+.width65 {width: 65%;}
+.width70 {width: 70%;}
+.width80 {width: 80%;}
+.width85 {width: 85%;}
+.width90 {width: 90%;}
+.width100 {width: 100%;}
+
+.width120{width: 120px;display: inline}
+.width150{width: 150px;display: inline}
+
+.height50 {height: 50%;}
+.height99 {height: 99%;}
+.height100 {height: 100%;}
+
+.text-left{text-align:left}
+.text-right{text-align:right}
+.text-center{text-align:center;}
+
+.blank1{width:100%;height:1px;clear: both;}
+.blank2{width:100%;height:2px;clear: both; }
+.blank5{width:100%;height:5px;clear: both; }
+.blank10{width:100%;height:10px;}
+.blank20{width:100%;height:20px;clear: both; }
+.blank30{width:100%;height:30px;clear: both; }
+.blank40{width:100%;height:40px;clear: both; }
+.blank50{width:100%;height:50px;clear: both; }
+.blank60{width:100%;height:60px;clear: both; }
+.blank100{width:100%;height:100px;}
+
+
+/*行标题*/
+.table-item-bar{border-bottom: 1px #609d2f solid;height: 40px;line-height: 40px;margin: 0 10px;}
+.table-item-bar .left-bar{float: left;width: 70%;height: 100%;}
+.table-item-bar .right-bar{float: left;width: 30%;height: 100%;text-align: right;}
+.table-item-bar .right-bar i{cursor: pointer;}
+.table-item-bar .right-bar i:hover{color: #01ADEF;}
+
+/*查询区域,用于对查询条件布局*/
+.query-area{padding: 10px;width: 100%;}
+.query-area .query-table{width: 100%;border: 0;}
+.query-area .query-table .query-label{padding:10px 10px;padding-right: 5px;}
+.query-area .query-table input{height: 30px;}
+.query-area .query-table td{max-width:170px}
+
+.dropdown .btn label{margin: 0;}

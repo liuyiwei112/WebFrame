@@ -1,0 +1,27 @@
+
+<script>
+	$(function(){
+		$('.form_datetime').datetimepicker({
+	        minView:4,
+	        autoclose:true,
+	        todayBtn:true,
+	        format:'yyyy-mm-dd'
+	    });
+		
+	})
+</script>
+	<h3>日期选择框功能基于bootstrap-datepicker</h3>
+	<h6>参数参考<a href="http://www.bootcss.com/p/bootstrap-datetimepicker/demo.htm">http://www.bootcss.com/p/bootstrap-datetimepicker/demo.htm</a></h6>
+	
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="input-group date form_datetime" data-link-field="startDate" data-link-format="yyyy-mm-dd">
+			    <input size="16" type="text" value="" readonly class="form-control">
+			    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			</div>
+			<input type="hidden" id="startDate" value="" />
+		</div>
+	</div>
+	<div class="alert alert-success" role="alert">1.data-link-format：隐藏域中值的格式</div>
+	<div class="alert alert-success" role="alert">2.data-link-field：关联某一个隐藏域（ID）</div>
+	<div class="alert alert-success" role="alert">3.option中的参数详见API文档</div>

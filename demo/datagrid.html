@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link href="../css/skin/skin-green.css" rel="stylesheet" id="changecss" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/siov-base.js"></script>
+		<script>
+			bs.loadScript('../', ['boot-table'])
+			bs.loadStyle('../', ['boot-table']);
+		</script>
+		<title></title>
+	</head>
+
+	<body>
+
+		<div class="item-bar">此处可以验证table的各项事件
+		</div>
+
+		<div class="item-bar">测试方法</div>
+
+		<div class="query-table">
+			<div class="query-area">
+				<div class="query-block">
+					<button class="btn btn-default" id="get-selections">
+			        Get Selections
+			    </button>
+					<button class="btn btn-default" id="get-data" data-method="getData">
+			        Get Data
+			    </button>
+					<button class="btn btn-default" id="load-data" data-method="load">
+			        Load Data
+			    </button>
+					<button class="btn btn-default" id="append-data" data-method="append">
+			        Append Data
+			    </button>
+					<button class="btn btn-default" id="remove-data" data-method="remove">
+			        Remove Data
+			    </button>
+					<button class="btn btn-default" id="update-row" data-method="updateRow">
+			        Update Row
+			    </button>
+					<button class="btn btn-default" id="merge-cells">
+			        Merge Cells
+			    </button>
+					<button class="btn btn-default" id="check-all" data-method="checkAll">
+			        Check All
+			    </button>
+					<button class="btn btn-default" id="uncheck-all" data-method="uncheckAll">
+			        Uncheck All
+			    </button>
+					<button class="btn btn-default" id="show-loading" data-method="showLoading">
+			        Show Loading
+			    </button>
+					<button class="btn btn-default" id="hide-loading" data-method="hideLoading">
+			        Hide Loading
+			    </button>
+					<button class="btn btn-default" id="refresh" data-method="refresh">
+			        Refresh
+			    </button>
+					<button class="btn btn-default" id="show-column" data-method="showColumn">
+			        Show Column
+			    </button>
+					<button class="btn btn-default" id="hide-column" data-method="hideColumn">
+			        Hide Column
+			    </button>
+				</div>
+			</div>
+		</div>
+		<div class="blank10"></div>
+		<table id="table-methods-table" data-click-to-select="true" data-show-footer="false">
+			<thead>
+				<tr>
+					<th data-field="state" data-checkbox="true" data-title="123"></th>
+					<th data-field="id" data-sortable="true" data-title-tool-tip="123" data-class="disabled">Item ID</th>
+					<th data-field="employeeName" data-click-to-select="false">客户名称</th>
+					<th data-field="level" data-halign="center" data-formatter="lvFormatter" data-align="right">等级</th>
+					<th data-field="age">年龄</th>
+					<th data-field="gender">性别</th>
+				</tr>
+			</thead>
+		</table>
+		<div class="blank10"></div>
+		<div style="width: 100%;height: 200px;overflow-y: auto;">
+			<div class="blue blue-border rowAttributes">界面加载后自动触发rowAttributes<br></div>
+			<div class="blue blue-border on-all">等待触发onCheckAll\onUncheckAll\onCheckSome\onUncheckSome</div>
+			<div class="blue blue-border cell-click">等待触发onClickCell、onDblClickCell</div>
+			<div class="blue blue-border row-click">等待触发onClickRow、onDblClickRow</div>
+			<div class="blue blue-border onSort">等待触发onSort</div>
+			<div class="blue blue-border onCheck">等待触发onCheck\onUnCheck</div>
+			<div class="blue blue-border onLoad">等待触发onLoadSuccess\onLoadError</div>
+			<div class="blue blue-border onPageChange">等待触发onPageChange</div>
+		</div>
+
+		<script>
+			$(function() {
+
+				// init table use data
+				var $table = $('#table-methods-table').bootstrapTable({
+					//					data: getRows(),
+					url: 'http://127.0.0.1:3000/base/getTableData',
+					sidePagination: 'server',
+					pagination: 'true',
+					pIndexName: 'page',
+					pSizeName: 'size',
+					pageSize: 7,
+					rowStyle: function(row, index) {
+						var classes = ['active', 'success', 'info', 'warning', 'danger'];
+						if(index % 2 === 0 && index / 2 < classes.length) {
+							return {
+								classes: classes[index / 2]
+							};
+						}
+						return {};
+					},
+					rowAttributes: function(row, index) {
+						$('.rowAttributes').append('index:' + index + ';row:' + JSON.stringify(row) + '<br/>');
+					},
+					onClickCell: function(field, value, row, $element) {
+						$('.cell-click').html('trigger onClickCell 您点击了Cell! 当前列行信息：field:' + field + '; value:' + value + '; row:' + JSON.stringify(row) + '')
+					},
+					onDblClickCell: function(field, value, row, $element) {
+						$('.cell-click').html('trigger onDblClickCell 您双击了Cell! 当前列行信息：field:' + field + '; value:' + value + '; row:' + JSON.stringify(row) + '')
+					},
+					onClickRow: function(item, $element) {
+						$('.row-click').html('trigger onClickRow 您点击了Row! item:' + JSON.stringify(item));
+					},
+					onDblClickRow: function(item, $element) {
+						$('.row-click').html('trigger onDblClickRow 您双击了Row! item:' + JSON.stringify(item));
+					},
+					onSort: function(name, order) {
+						$('.onSort').html('trigger onSort   name:' + name + '@@order:' + order);
+					},
+					onCheck: function(row) {
+						$('.onCheck').html('trigger onCheck   row:' + JSON.stringify(row));
+					},
+					onUncheck: function(row) {
+						$('.onCheck').html('trigger onUncheck   row:' + JSON.stringify(row));
+					},
+					onCheckAll: function(rows) {
+						$('.on-all').html('trigger onCheckAll  rows:' + JSON.stringify(rows));
+					},
+					onUncheckAll: function(rows) {
+						$('.on-all').html('trigger onUncheckAll  rows:' + JSON.stringify(rows));
+					},
+					onCheckSome: function(rows) {
+						$('.on-all').html('trigger onCheckSome  rows:' + JSON.stringify(rows));
+					},
+					onUncheckSome: function(rows) {
+						$('.on-all').html('trigger onUncheckSome  rows:' + JSON.stringify(rows));
+					},
+					onLoadSuccess: function(data) {
+						$('.onLoad').html('trigger onLoadSuccess  data:' + JSON.stringify(data));
+					},
+					onPageChange: function(number, size) {
+						$('.onPageChange').html('trigger onPageChange  页码:' + number + '@每页数量:' + size)
+					},
+				});
+
+				$('#get-selections').click(function() {
+					alert('Selected values: ' + JSON.stringify($table.bootstrapTable('getSelections')));
+				});
+				$('#get-data').click(function() {
+					alert('current data: ' + JSON.stringify($table.bootstrapTable('getData')));
+				});
+				// This demonstrates utilizing the data-method attribute to use one 
+				//     jQuery handler to execute multiple methods. 
+				// ($this).data('method') retrieves the value of the data-method 
+				//     attribute of the object that was clicked which is then passed to 
+				//     the bootstrapTable function. 
+				// Only the load and append methods require a parameter                                 
+				$('#load-data, #append-data, #check-all, #uncheck-all, ' +
+					'#show-loading, #hide-loading').click(function() {
+					$table.bootstrapTable($(this).data('method'), getRows());
+				});
+				$('#refresh').click(function() {
+					$table.bootstrapTable('refresh', {
+						url: 'data1.json'
+					});
+				});
+				$('#remove-data').click(function() {
+					var selects = $table.bootstrapTable('getSelections');
+					ids = $.map(selects, function(row) {
+						return row.id;
+					});
+
+					$table.bootstrapTable('remove', {
+						field: 'id',
+						values: ids
+					});
+				});
+				$('#update-row').click(function() {
+					$table.bootstrapTable('updateRow', {
+						index: 1,
+						row: {
+							name: 'test111111',
+							price: '$111111'
+						}
+					});
+				});
+				$('#merge-cells').click(function() {
+					$table.bootstrapTable('mergeCells', {
+						index: 1,
+						field: 'name',
+						colspan: 2,
+						rowspan: 3
+					})
+				});
+				$('#show-column, #hide-column').click(function() {
+					$table.bootstrapTable($(this).data('method'), 'id');
+				});
+			});
+
+			//			function itemFooter(a){
+			//				//a - allData;
+			//				alert(a+'@@'+JSON.stringify(a));
+			//			}
+
+			function lvFormatter(value, row) {
+				return 'level ' + value;
+			}
+
+			function stateFormatter(value, row, index) {
+				if(index === 2) {
+					return {
+						disabled: true
+					};
+				}
+				if(index === 5) {
+					return {
+						disabled: true,
+						checked: true
+					}
+				}
+				return value;
+			}
+
+			function rowStyle(row, index) {
+				var classes = ['active', 'success', 'info', 'warning', 'danger'];
+
+				if(index % 2 === 0 && index / 2 < classes.length) {
+					return {
+						classes: classes[index / 2]
+					};
+				}
+				return {};
+			}
+		</script>
+		<style>
+			.red-font {
+				color: red
+			}
+		</style>
+
+	</body>
